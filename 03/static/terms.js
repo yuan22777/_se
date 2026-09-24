@@ -1,0 +1,845 @@
+const TERMS = [
+ {
+  "id": "term_001",
+  "word_en": "RAG",
+  "word_zh": "檢索增強生成",
+  "full_name": "Retrieval-Augmented Generation",
+  "definition": "結合檢索系統與大語言模型的技術，讓 AI 先去外部知識庫查資料，再根據查到的內容回答，降低胡說八道的機率。",
+  "category": [
+   "人工智慧"
+  ],
+  "application_scenarios": [
+   "企業內部知識庫",
+   "文件問答",
+   "客服機器人",
+   "技術文件助手",
+   "AI搜尋引擎"
+  ],
+  "example_sentence": "這家公司想做內部資料庫問答，建議用 RAG 架構來降低 AI 幻覺。",
+  "related_terms": [
+   "term_002",
+   "term_003",
+   "term_031"
+  ]
+ },
+ {
+  "id": "term_002",
+  "word_en": "LLM",
+  "word_zh": "大型語言模型",
+  "full_name": "Large Language Model",
+  "definition": "用海量文字訓練出來的 AI 模型，可以理解和生成人類語言，例如 ChatGPT 背後的模型。",
+  "category": [
+   "人工智慧"
+  ],
+  "application_scenarios": [
+   "聊天機器人",
+   "文件問答",
+   "程式碼助手",
+   "翻譯",
+   "客服機器人"
+  ],
+  "example_sentence": "老師說這個作業可以用 LLM 輔助寫程式，但要自己看得懂。",
+  "related_terms": [
+   "term_001",
+   "term_003"
+  ]
+ },
+ {
+  "id": "term_003",
+  "word_en": "Embedding",
+  "word_zh": "向量嵌入",
+  "full_name": "Embedding",
+  "definition": "把文字、圖片轉成一串數字向量，讓電腦可以計算語意相似度，是搜尋引擎和 RAG 的基礎。",
+  "category": [
+   "人工智慧"
+  ],
+  "application_scenarios": [
+   "AI搜尋引擎",
+   "文件問答",
+   "推薦系統",
+   "語意搜尋"
+  ],
+  "example_sentence": "把技術文件都轉成 Embedding 存起來，使用者一問就能找到最相關的段落。",
+  "related_terms": [
+   "term_001",
+   "term_002"
+  ]
+ },
+ {
+  "id": "term_004",
+  "word_en": "Deadlock",
+  "word_zh": "死結",
+  "full_name": "Deadlock",
+  "definition": "兩個以上的進程互相等待對方釋放資源，結果誰都動不了，就像兩個人在窄巷互不相讓。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "多執行緒程式",
+   "資料庫交易",
+   "面試常考題",
+   "系統設計"
+  ],
+  "example_sentence": "面試被問到 Deadlock 的四個必要條件，你答得出來嗎？",
+  "related_terms": [
+   "term_005",
+   "term_006",
+   "term_007"
+  ]
+ },
+ {
+  "id": "term_005",
+  "word_en": "Process",
+  "word_zh": "行程 / 進程",
+  "full_name": "Process",
+  "definition": "作業系統中執行中的程式單位，有自己獨立的記憶體空間。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "作業系統課程",
+   "多工處理",
+   "系統程式設計"
+  ],
+  "example_sentence": "開工作管理員看到的每一個 Chrome 分頁，背後都是一個 Process。",
+  "related_terms": [
+   "term_006",
+   "term_004"
+  ]
+ },
+ {
+  "id": "term_006",
+  "word_en": "Thread",
+  "word_zh": "執行緒",
+  "full_name": "Thread",
+  "definition": "比 Process 更小的執行單位，同一個 Process 內的 Thread 共享記憶體，切換速度更快。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "多執行緒程式",
+   "遊戲開發",
+   "伺服器併發處理"
+  ],
+  "example_sentence": "下載軟體一邊下載、一邊顯示進度條，就是多 Thread 在工作。",
+  "related_terms": [
+   "term_005",
+   "term_007",
+   "term_008"
+  ]
+ },
+ {
+  "id": "term_007",
+  "word_en": "Mutex",
+  "word_zh": "互斥鎖",
+  "full_name": "Mutual Exclusion",
+  "definition": "保護共享資源的鎖，一次只允許一個 Thread 進入，避免資料被同時改壞。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "多執行緒程式",
+   "併發控制",
+   "面試常考題"
+  ],
+  "example_sentence": "兩個 Thread 同時寫同一個變數會出錯，記得加 Mutex。",
+  "related_terms": [
+   "term_008",
+   "term_004"
+  ]
+ },
+ {
+  "id": "term_008",
+  "word_en": "Semaphore",
+  "word_zh": "號誌量",
+  "full_name": "Semaphore",
+  "definition": "比 Mutex 更通用的同步工具，可以控制同時進入臨界區的數量，例如停車場空位計數。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "併發控制",
+   "資源池管理",
+   "作業系統課程"
+  ],
+  "example_sentence": "連線池只允許 10 個連線，就用 Semaphore 來控管。",
+  "related_terms": [
+   "term_007",
+   "term_006"
+  ]
+ },
+ {
+  "id": "term_009",
+  "word_en": "Virtual Memory",
+  "word_zh": "虛擬記憶體",
+  "full_name": "Virtual Memory",
+  "definition": "讓程式以為自己有很大記憶體的技術，OS 會在實體記憶體和硬碟之間搬資料。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "作業系統課程",
+   "效能調校",
+   "系統設計"
+  ],
+  "example_sentence": "電腦 RAM 不夠時會變慢，就是因為一直在用 Virtual Memory 交換。",
+  "related_terms": [
+   "term_010",
+   "term_005"
+  ]
+ },
+ {
+  "id": "term_010",
+  "word_en": "Cache",
+  "word_zh": "快取",
+  "full_name": "Cache",
+  "definition": "把常用的資料放在離 CPU 最近、最快的地方，之後就不用再去慢速的地方拿。",
+  "category": [
+   "作業系統",
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "網頁加速",
+   "資料庫優化",
+   "CPU設計",
+   "CDN"
+  ],
+  "example_sentence": "網頁第二次開比較快，就是因為瀏覽器 Cache 了圖片。",
+  "related_terms": [
+   "term_009",
+   "term_033"
+  ]
+ },
+ {
+  "id": "term_011",
+  "word_en": "API",
+  "word_zh": "應用程式介面",
+  "full_name": "Application Programming Interface",
+  "definition": "軟體之間溝通的約定，前端透過 API 跟後端要資料。",
+  "category": [
+   "軟體工程",
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "前後端串接",
+   "第三方登入",
+   "APP開發",
+   "面試必考"
+  ],
+  "example_sentence": "串接天氣 API，就可以在你的 APP 顯示即時天氣。",
+  "related_terms": [
+   "term_012",
+   "term_032",
+   "term_013"
+  ]
+ },
+ {
+  "id": "term_012",
+  "word_en": "REST",
+  "word_zh": "表現層狀態轉換",
+  "full_name": "Representational State Transfer",
+  "definition": "設計 API 的一種風格，用 HTTP 的 GET/POST/PUT/DELETE 對應查/增/改/刪。",
+  "category": [
+   "軟體工程",
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "後端開發",
+   "前後端串接",
+   "系統設計"
+  ],
+  "example_sentence": "這份 REST API 文件寫 GET /users 就是查詢使用者列表。",
+  "related_terms": [
+   "term_011",
+   "term_013"
+  ]
+ },
+ {
+  "id": "term_013",
+  "word_en": "HTTP",
+  "word_zh": "超文本傳輸協定",
+  "full_name": "HyperText Transfer Protocol",
+  "definition": "瀏覽器跟網站伺服器講話的語言，負責請求跟回應網頁內容。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "網頁開發",
+   "爬蟲",
+   "後端開發",
+   "面試必考"
+  ],
+  "example_sentence": "上課老師說 HTTP 是無狀態的，所以才需要 Cookie 來記住登入。",
+  "related_terms": [
+   "term_012",
+   "term_014",
+   "term_017"
+  ]
+ },
+ {
+  "id": "term_014",
+  "word_en": "DNS",
+  "word_zh": "網域名稱系統",
+  "full_name": "Domain Name System",
+  "definition": "把 google.com 這種網址翻譯成 IP 位址的電話簿系統。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "網站部署",
+   "網路除錯",
+   "系統設計"
+  ],
+  "example_sentence": "網站打不開，先 ping 一下看看是不是 DNS 掛了。",
+  "related_terms": [
+   "term_013",
+   "term_015"
+  ]
+ },
+ {
+  "id": "term_015",
+  "word_en": "TCP",
+  "word_zh": "傳輸控制協定",
+  "full_name": "Transmission Control Protocol",
+  "definition": "可靠的傳輸協定，會確認對方有收到，遺失會重傳，適合傳檔案、開網頁。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "網路程式設計",
+   "視訊通話",
+   "面試常考題",
+   "系統設計"
+  ],
+  "example_sentence": "TCP 三向交握是面試網路題的開場白。",
+  "related_terms": [
+   "term_016",
+   "term_013"
+  ]
+ },
+ {
+  "id": "term_016",
+  "word_en": "UDP",
+  "word_zh": "使用者資料包協定",
+  "full_name": "User Datagram Protocol",
+  "definition": "快速但不可靠的傳輸協定，不管對方有沒有收到，適合遊戲、直播這種即時應用。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "線上遊戲",
+   "直播",
+   "語音通話",
+   "DNS查詢"
+  ],
+  "example_sentence": "打遊戲會 Lag，有時候就是 UDP 封包掉了。",
+  "related_terms": [
+   "term_015",
+   "term_017"
+  ]
+ },
+ {
+  "id": "term_017",
+  "word_en": "WebSocket",
+  "word_zh": "網頁即時通訊協定",
+  "full_name": "WebSocket",
+  "definition": "讓瀏覽器和伺服器保持長連線、可以互相即時推訊息的技術。",
+  "category": [
+   "計算機網路",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "聊天室",
+   "即時遊戲",
+   "股票報價",
+   "客服機器人"
+  ],
+  "example_sentence": "做線上聊天室不要一直 polling，直接用 WebSocket 比較省資源。",
+  "related_terms": [
+   "term_013",
+   "term_011"
+  ]
+ },
+ {
+  "id": "term_018",
+  "word_en": "Load Balancer",
+  "word_zh": "負載平衡器",
+  "full_name": "Load Balancer",
+  "definition": "把湧入的使用者請求平均分配給多台伺服器，避免某一台被操爆。",
+  "category": [
+   "計算機網路",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "系統設計",
+   "高流量網站",
+   "面試常考題",
+   "雲端部署"
+  ],
+  "example_sentence": "雙十一流量太大，前面一定要加 Load Balancer 擋著。",
+  "related_terms": [
+   "term_033",
+   "term_029"
+  ]
+ },
+ {
+  "id": "term_019",
+  "word_en": "Latency",
+  "word_zh": "延遲",
+  "full_name": "Latency",
+  "definition": "從發出請求到收到回應的時間，越低代表反應越快。",
+  "category": [
+   "計算機網路",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "遊戲優化",
+   "API效能",
+   "系統設計",
+   "使用者體驗"
+  ],
+  "example_sentence": "老師說 Latency 和 Throughput 要一起看，不能只看一個。",
+  "related_terms": [
+   "term_020",
+   "term_018"
+  ]
+ },
+ {
+  "id": "term_020",
+  "word_en": "Throughput",
+  "word_zh": "吞吐量",
+  "full_name": "Throughput",
+  "definition": "單位時間內系統能處理多少請求，例如每秒 1000 個請求。",
+  "category": [
+   "計算機網路",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "效能測試",
+   "系統設計",
+   "資料庫優化"
+  ],
+  "example_sentence": "壓測報告寫 Throughput 是 5000 RPS，代表每秒可扛 5000 请求。",
+  "related_terms": [
+   "term_019",
+   "term_010"
+  ]
+ },
+ {
+  "id": "term_021",
+  "word_en": "Recursion",
+  "word_zh": "遞迴",
+  "full_name": "Recursion",
+  "definition": "函式自己呼叫自己的寫法，一定要記得寫終止條件，不然會無窮迴圈。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "資料結構課程",
+   "演算法面試",
+   "樹狀結構走訪"
+  ],
+  "example_sentence": "寫費氏數列最直覺的就是 Recursion，但考試會考你怎麼優化。",
+  "related_terms": [
+   "term_022"
+  ]
+ },
+ {
+  "id": "term_022",
+  "word_en": "Polymorphism",
+  "word_zh": "多型",
+  "full_name": "Polymorphism",
+  "definition": "物件導向三大特性之一，同一個方法在不同物件上有不同行為，例如狗叫跟貓叫都是叫聲但聲音不同。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "物件導向課程",
+   "Java考試",
+   "面試必考",
+   "框架設計"
+  ],
+  "example_sentence": "老師上課講 Polymorphism 聽不懂？記住：同一個介面，不同實作。",
+  "related_terms": [
+   "term_021",
+   "term_011"
+  ]
+ },
+ {
+  "id": "term_023",
+  "word_en": "ORM",
+  "word_zh": "物件關聯對映",
+  "full_name": "Object-Relational Mapping",
+  "definition": "讓你不用寫 SQL，用程式語言的物件就能操作資料庫的工具，例如 Django ORM。",
+  "category": [
+   "軟體工程",
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "後端開發",
+   "快速開發",
+   "專題實作"
+  ],
+  "example_sentence": "用 ORM 一行 User.objects.all() 就查出所有使用者，不用寫 SELECT。",
+  "related_terms": [
+   "term_024",
+   "term_025"
+  ]
+ },
+ {
+  "id": "term_024",
+  "word_en": "Index",
+  "word_zh": "索引",
+  "full_name": "Database Index",
+  "definition": "資料庫的目錄，加了之後查詢變超快，但寫入會變慢一點，要取捨。",
+  "category": [
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "資料庫優化",
+   "效能調校",
+   "面試常考題"
+  ],
+  "example_sentence": "查詢 100 萬筆資料要 3 秒？幫常用欄位加個 Index 試試。",
+  "related_terms": [
+   "term_025",
+   "term_023"
+  ]
+ },
+ {
+  "id": "term_025",
+  "word_en": "Transaction",
+  "word_zh": "交易",
+  "full_name": "Transaction",
+  "definition": "資料庫的一組操作，要嘛全部成功，要嘛全部失敗，例如轉帳不能只扣款不入帳。",
+  "category": [
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "銀行轉帳",
+   "電商下單",
+   "資料庫課程",
+   "面試必考"
+  ],
+  "example_sentence": "電商下單要扣庫存又要建訂單，這兩步一定要包在同一個 Transaction。",
+  "related_terms": [
+   "term_026",
+   "term_004"
+  ]
+ },
+ {
+  "id": "term_026",
+  "word_en": "Normalization",
+  "word_zh": "正規化",
+  "full_name": "Normalization",
+  "definition": "設計資料庫表格的方法，把重複資料拆開，避免改一個地方、其他地方忘記改。",
+  "category": [
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "資料庫設計",
+   "專題實作",
+   "考試"
+  ],
+  "example_sentence": "期中考考第三正規化（3NF），記得先會畫 ER Model。",
+  "related_terms": [
+   "term_025",
+   "term_024"
+  ]
+ },
+ {
+  "id": "term_027",
+  "word_en": "CI/CD",
+  "word_zh": "持續整合與部署",
+  "full_name": "Continuous Integration / Continuous Deployment",
+  "definition": "程式一 push 就自動跑測試、自動部署上線，不用人工半夜爬起來發版。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "團隊協作",
+   "自動化部署",
+   "DevOps",
+   "實習工作"
+  ],
+  "example_sentence": "學長說進公司第一件事就是看懂他們的 CI/CD pipeline。",
+  "related_terms": [
+   "term_030",
+   "term_028"
+  ]
+ },
+ {
+  "id": "term_028",
+  "word_en": "Docker",
+  "word_zh": "容器",
+  "full_name": "Docker",
+  "definition": "把程式跟環境包成一個箱子，到哪台電腦跑都一樣，不再有在我電腦可以跑的問題。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "環境建置",
+   "專題部署",
+   "微服務",
+   "實習工作"
+  ],
+  "example_sentence": "專題 demo 前先 dockerize，不然教授電腦一定跑不起來。",
+  "related_terms": [
+   "term_029",
+   "term_027"
+  ]
+ },
+ {
+  "id": "term_029",
+  "word_en": "Kubernetes",
+  "word_zh": "容器編排系統",
+  "full_name": "Kubernetes (K8s)",
+  "definition": "管理一大堆 Docker 容器的工具，會自動擴容、自動重啟掛掉的服務。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "微服務",
+   "雲端部署",
+   "系統設計",
+   "維運"
+  ],
+  "example_sentence": "小專題用 Docker 就夠了，K8s 是給大公司上百台機器的。",
+  "related_terms": [
+   "term_028",
+   "term_018"
+  ]
+ },
+ {
+  "id": "term_030",
+  "word_en": "Git",
+  "word_zh": "版本控制",
+  "full_name": "Git",
+  "definition": "記錄程式碼每一版變化的工具，可以回溯、開分支、跟別人協作不打架。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "團隊協作",
+   "專題實作",
+   "面試必備",
+   "開源貢獻"
+  ],
+  "example_sentence": "期中考前記得 git commit，不然熬夜寫的 code 噴掉沒人救你。",
+  "related_terms": [
+   "term_027",
+   "term_036"
+  ]
+ },
+ {
+  "id": "term_031",
+  "word_en": "Chatbot",
+  "word_zh": "聊天機器人",
+  "full_name": "Chatbot",
+  "definition": "可以跟人對話的程式，現在多半接 LLM，負責回答客服、導購問題。",
+  "category": [
+   "人工智慧",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "客服機器人",
+   "企業內部知識庫",
+   "電商導購",
+   "專題實作"
+  ],
+  "example_sentence": "畢專想做客服機器人？RAG + Chatbot 是最快有成果的組合。",
+  "related_terms": [
+   "term_001",
+   "term_002"
+  ]
+ },
+ {
+  "id": "term_032",
+  "word_en": "SDK",
+  "word_zh": "軟體開發套件",
+  "full_name": "Software Development Kit",
+  "definition": "別人包好給你用的工具組，例如串金流、接地圖都會給你 SDK。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "APP開發",
+   "第三方串接",
+   "金流整合"
+  ],
+  "example_sentence": "要接 LINE 登入，直接載官方 SDK 比自己刻 API 快十倍。",
+  "related_terms": [
+   "term_011"
+  ]
+ },
+ {
+  "id": "term_033",
+  "word_en": "CDN",
+  "word_zh": "內容傳遞網路",
+  "full_name": "Content Delivery Network",
+  "definition": "在全世界放很多快取伺服器，讓使用者都從最近的地方載圖片影片，網站才會快。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "網站加速",
+   "影音串流",
+   "遊戲更新",
+   "高流量網站"
+  ],
+  "example_sentence": "圖片都丟 CDN，教授從國外開你的網站也不會卡。",
+  "related_terms": [
+   "term_010",
+   "term_018"
+  ]
+ },
+ {
+  "id": "term_034",
+  "word_en": "Firewall",
+  "word_zh": "防火牆",
+  "full_name": "Firewall",
+  "definition": "擋在網路出入口的守衛，決定哪些封包可以進出，防止駭客入侵。",
+  "category": [
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "資安",
+   "伺服器維運",
+   "企業網路"
+  ],
+  "example_sentence": "SSH 連不上？先檢查 Firewall 有沒有開 22 port。",
+  "related_terms": [
+   "term_035",
+   "term_014"
+  ]
+ },
+ {
+  "id": "term_035",
+  "word_en": "SQL Injection",
+  "word_zh": "SQL注入攻擊",
+  "full_name": "SQL Injection",
+  "definition": "駭客在輸入框塞惡意 SQL，騙資料庫吐出不該給的資料，新手最常犯的漏洞。",
+  "category": [
+   "資料庫",
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "資安",
+   "後端開發",
+   "面試常考題",
+   "專題審查"
+  ],
+  "example_sentence": "登入框直接拼字串組 SQL？等著被 SQL Injection 脫庫吧，記得用參數化查詢。",
+  "related_terms": [
+   "term_023",
+   "term_034"
+  ]
+ },
+ {
+  "id": "term_036",
+  "word_en": "Agile",
+  "word_zh": "敏捷開發",
+  "full_name": "Agile",
+  "definition": "小步快跑的開發方法，每 1-2 週一個 Sprint，不斷 Demo、快速改需求。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "團隊協作",
+   "專題管理",
+   "實習工作",
+   "Scrum"
+  ],
+  "example_sentence": "專題別想一次做到完美，用 Agile 先做出 MVP 再迭代。",
+  "related_terms": [
+   "term_030",
+   "term_027"
+  ]
+ },
+ {
+  "id": "term_037",
+  "word_en": "Garbage Collection",
+  "word_zh": "垃圾回收",
+  "full_name": "Garbage Collection (GC)",
+  "definition": "程式語言自動幫你清掉沒在用的記憶體，不用自己 free，Java/Python 都有。",
+  "category": [
+   "軟體工程",
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "Java課程",
+   "Python開發",
+   "效能調校",
+   "面試常考題"
+  ],
+  "example_sentence": "C 語言要自己 malloc/free，Java 靠 Garbage Collection 省很多事。",
+  "related_terms": [
+   "term_009",
+   "term_022"
+  ]
+ },
+ {
+  "id": "term_038",
+  "word_en": "OAuth",
+  "word_zh": "開放授權",
+  "full_name": "Open Authorization",
+  "definition": "用 Google/LINE 帳號一鍵登入的標準，不用把密碼交給第三方網站。",
+  "category": [
+   "計算機網路",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "第三方登入",
+   "APP開發",
+   "資安",
+   "會員系統"
+  ],
+  "example_sentence": "專題登入頁放個 Google OAuth，使用者才懶得再註冊一組帳密。",
+  "related_terms": [
+   "term_011",
+   "term_013"
+  ]
+ },
+ {
+  "id": "term_039",
+  "word_en": "Compiler",
+  "word_zh": "編譯器",
+  "full_name": "Compiler",
+  "definition": "把你寫的高階語言一次翻成機器碼的程式，C/Java 都要先編譯才能跑。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "程式語言課程",
+   "系統程式",
+   "效能優化"
+  ],
+  "example_sentence": "編譯原理被當很慘？先搞懂 Lexer 跟 Parser 在幹嘛。",
+  "related_terms": [
+   "term_021",
+   "term_037"
+  ]
+ },
+ {
+  "id": "term_040",
+  "word_en": "API Gateway",
+  "word_zh": "API閘道",
+  "full_name": "API Gateway",
+  "definition": "微服務架構的大門口，統一管認證、限流、轉發，後面掛幾十個小服務都靠它。",
+  "category": [
+   "軟體工程",
+   "計算機網路"
+  ],
+  "application_scenarios": [
+   "微服務",
+   "系統設計",
+   "面試常考題"
+  ],
+  "example_sentence": "系統設計面試畫微服務，記得在前面加一層 API Gateway。",
+  "related_terms": [
+   "term_011",
+   "term_018",
+   "term_029"
+  ]
+ }
+];

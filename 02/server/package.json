@@ -1,0 +1,20 @@
+{
+  "name": "school-admin-server",
+  "version": "1.0.0",
+  "description": "校務行政系統 MVP - 後端 API",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "db:init": "node scripts/initDb.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test --test-concurrency=1 \"tests/*.e2e.test.js\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

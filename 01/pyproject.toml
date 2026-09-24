@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[project]
+name = "mycurl"
+version = "0.1.0"
+description = "類似 curl 的 Python HTTP 命令列工具"
+requires-python = ">=3.10"
+
+[project.scripts]
+mycurl = "mycurl.__main__:main"
