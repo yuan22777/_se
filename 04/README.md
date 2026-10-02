@@ -1,3 +1,9 @@
+
+母專案 -- https://github.com/se-test-examples-2-7/git-examples/tree/main  
+分支 -- https://github.com/se-test-examples-2-7/git-examples/tree/developGitBranch  
+子專案 -- https://github.com/yuan22777/git-examples/tree/main   
+
+
 ### 母專案
 ```bash
 # 建立新分支並切換過去
@@ -35,3 +41,4 @@ git commit -m "add test"
 
 #push上GitHub
 git push
+```
