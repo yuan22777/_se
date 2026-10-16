@@ -1,0 +1,9 @@
+my-docker-project/
+├── docker-compose.yml
+├── README.md
+├── nginx/
+│   └── default.conf
+└── backend/
+    ├── Dockerfile
+    ├── package.json
+    └── server.js
