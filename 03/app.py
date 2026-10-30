@@ -16,6 +16,10 @@ BASE = Path(__file__).parent
 TERMS: List[dict] = json.loads((BASE / "terms.json").read_text(encoding="utf-8"))
 BY_ID = {t["id"]: t for t in TERMS}
 
+PATHS = json.loads((BASE / "learning_paths.json").read_text(encoding="utf-8"))
+COURSES = {c["id"]: c for c in PATHS.get("courses", [])}
+ROLES = {r["id"]: r for r in PATHS.get("roles", [])}
+
 app = FastAPI(title="資工專業辭典 MVP", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
@@ -159,6 +163,53 @@ def api_suggest(q: str = Query(..., min_length=1), limit: int = 5):
         key=lambda x: -x["score"],
     )[:limit]
     return {"query": q, "suggestions": [{**s, "match": "fuzzy"} for s in scored]}
+
+
+# ---------- 學習地圖 (Learning Paths) ----------
+def _course_summary(c: dict) -> dict:
+    terms = [BY_ID[i] for i in c.get("term_ids", []) if i in BY_ID]
+    hot = [BY_ID[i]["word_en"] for i in c.get("hot_ids", []) if i in BY_ID]
+    return {
+        **{k: v for k, v in c.items() if k not in ("must_ids", "hot_ids")},
+        "term_count": len(terms),
+        "must_count": len([i for i in c.get("must_ids", []) if i in BY_ID]),
+        "hot_words": hot,
+    }
+
+
+def _role_summary(r: dict) -> dict:
+    terms = [BY_ID[i] for i in r.get("term_ids", []) if i in BY_ID]
+    return {
+        **{k: v for k, v in r.items() if k != "term_ids"},
+        "term_count": len(terms),
+        "must_count": sum(1 for t in terms if t.get("frequency") == "must"),
+    }
+
+
+@app.get("/api/learning-paths")
+def learning_paths():
+    return {
+        "courses": [_course_summary(c) for c in PATHS.get("courses", [])],
+        "roles": [_role_summary(r) for r in PATHS.get("roles", [])],
+    }
+
+
+@app.get("/api/courses/{course_id}")
+def course_detail(course_id: str):
+    c = COURSES.get(course_id)
+    if not c:
+        return {"error": "not found"}
+    terms = [BY_ID[i] for i in c.get("term_ids", []) if i in BY_ID]
+    return {**c, "terms": terms, "term_count": len(terms), "hot_words": [BY_ID[i]["word_en"] for i in c.get("hot_ids", []) if i in BY_ID]}
+
+
+@app.get("/api/roles/{role_id}")
+def role_detail(role_id: str):
+    r = ROLES.get(role_id)
+    if not r:
+        return {"error": "not found"}
+    terms = [BY_ID[i] for i in r.get("term_ids", []) if i in BY_ID]
+    return {**r, "terms": terms, "term_count": len(terms)}
 
 
 # ---------- 前端靜態頁 ----------

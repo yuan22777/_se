@@ -20,7 +20,50 @@ const TERMS = [
    "term_002",
    "term_003",
    "term_031"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "檢索增強生成",
+    "slang": [
+     "RAG 架構",
+     "接 RAG",
+     "檢索增強"
+    ],
+    "dialogue": "我們的客服機器人會接 RAG，回答前先去知識庫找資料。"
+   },
+   "one_liner": "RAG 就像是給 AI 一本「開卷考試的參考書」。它不改變 LLM 本身的模型參數，而是在回答前先去搜尋企業內部的資料庫，把相關文件貼給 AI 當作參考答案，藉此解決 AI 亂講話（幻覺）與資料時效性的問題。",
+   "versus": {
+    "title": "RAG 🆚 Fine-tuning",
+    "left_title": "RAG（檢索增強生成）",
+    "right_title": "Fine-tuning（微調）",
+    "rows": [
+     {
+      "label": "是否改模型參數",
+      "left": "不改，回答前先查外部資料",
+      "right": "會用領域資料再訓練模型參數"
+     },
+     {
+      "label": "資料更新",
+      "left": "更新知識庫即可，較即時",
+      "right": "重新訓練才能反映新資料"
+     },
+     {
+      "label": "成本",
+      "left": "較低，適合企業知識問答",
+      "right": "較高，需要資料與算力"
+     },
+     {
+      "label": "白話比喻",
+      "left": "給 AI 一本參考書，開卷考試",
+      "right": "送 AI 去上公司內部訓練課程"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_002",
@@ -42,7 +85,24 @@ const TERMS = [
   "related_terms": [
    "term_001",
    "term_003"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "大型語言模型",
+    "slang": [
+     "大模型",
+     "LLM 模型",
+     "跑 LLM"
+    ],
+    "dialogue": "這個功能不用自己訓模型，直接接 LLM API 就好。"
+   },
+   "one_liner": "LLM 就像一個讀過海量書籍、很會接話的實習生，你給它提示，它就能生成看起來合理的答案，但不保證正確。",
+   "versus": null
+  }
  },
  {
   "id": "term_003",
@@ -63,7 +123,24 @@ const TERMS = [
   "related_terms": [
    "term_001",
    "term_002"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "向量嵌入",
+    "slang": [
+     "embed 一下",
+     "轉向量",
+     "打向量"
+    ],
+    "dialogue": "文件先 embed 成向量，存進 Vector DB 才能做語意搜尋。"
+   },
+   "one_liner": "Embedding 就像把一段文字轉成座標，意思相近的文字會落在附近，電腦就能用距離判斷它們像不像。",
+   "versus": null
+  }
  },
  {
   "id": "term_004",
@@ -85,7 +162,24 @@ const TERMS = [
    "term_005",
    "term_006",
    "term_007"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "死結",
+    "slang": [
+     "卡死",
+     "死鎖",
+     "互相等"
+    ],
+    "dialogue": "服務突然全部卡住，看起來是兩把鎖互相等待造成 Deadlock。"
+   },
+   "one_liner": "死結就像兩個人在狹窄通道面對面相遇，兩個人都在等對方讓路，結果誰都不肯退，最後大家都卡住無法繼續前進。",
+   "versus": null
+  }
  },
  {
   "id": "term_005",
@@ -105,7 +199,50 @@ const TERMS = [
   "related_terms": [
    "term_006",
    "term_004"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "行程 / 進程",
+    "slang": [
+     "開 process",
+     "Process 爆掉",
+     "多開一個 process"
+    ],
+    "dialogue": "這個工作太吃 CPU，乾脆多開一個 Process 隔離。"
+   },
+   "one_liner": "Process 就像一間獨立工廠，有自己的廠房、倉庫和資源，倒閉了也不會影響隔壁工廠。",
+   "versus": {
+    "title": "Process (進程) 🆚 Thread (線程)",
+    "left_title": "Process (進程)",
+    "right_title": "Thread (線程)",
+    "rows": [
+     {
+      "label": "核心定義",
+      "left": "作業系統分配資源（記憶體）的最小單位",
+      "right": "CPU 排程與執行的最小單位"
+     },
+     {
+      "label": "記憶體共享",
+      "left": "彼此獨立，無法直接存取對方記憶體",
+      "right": "同一 Process 內的 Thread 共享記憶體"
+     },
+     {
+      "label": "崩潰影響",
+      "left": "一個 Process 崩潰，不影響其他 Process",
+      "right": "一個 Thread 崩潰，可能拖垮整個 Process"
+     },
+     {
+      "label": "白話比喻",
+      "left": "一間工廠，擁有獨立空間與資源",
+      "right": "工廠裡的一條產線，共用廠房與倉庫"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_006",
@@ -126,7 +263,50 @@ const TERMS = [
    "term_005",
    "term_007",
    "term_008"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "執行緒",
+    "slang": [
+     "開 thread",
+     "多執行緒",
+     "thread 卡住"
+    ],
+    "dialogue": "這個下載任務丟到背景 Thread，不要卡住主畫面。"
+   },
+   "one_liner": "Thread 就像同一間工廠裡的多條產線，大家共用廠房和倉庫，動作快但一個產線出事可能拖累全廠。",
+   "versus": {
+    "title": "Process (進程) 🆚 Thread (線程)",
+    "left_title": "Process (進程)",
+    "right_title": "Thread (線程)",
+    "rows": [
+     {
+      "label": "核心定義",
+      "left": "作業系統分配資源（記憶體）的最小單位",
+      "right": "CPU 排程與執行的最小單位"
+     },
+     {
+      "label": "記憶體共享",
+      "left": "彼此獨立，無法直接存取對方記憶體",
+      "right": "同一 Process 內的 Thread 共享記憶體"
+     },
+     {
+      "label": "崩潰影響",
+      "left": "一個 Process 崩潰，不影響其他 Process",
+      "right": "一個 Thread 崩潰，可能拖垮整個 Process"
+     },
+     {
+      "label": "白話比喻",
+      "left": "一間工廠，擁有獨立空間與資源",
+      "right": "工廠裡的一條產線，共用廠房與倉庫"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_007",
@@ -146,7 +326,50 @@ const TERMS = [
   "related_terms": [
    "term_008",
    "term_004"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "互斥鎖",
+    "slang": [
+     "上鎖",
+     "加鎖",
+     "lock 住"
+    ],
+    "dialogue": "這段共享變數記得加 Mutex，不然兩個 Thread 會同時改壞。"
+   },
+   "one_liner": "Mutex 就像廁所的門鎖，一次只讓一個人進去，其他人只能在外面排隊等鑰匙。",
+   "versus": {
+    "title": "Mutex 🆚 Semaphore",
+    "left_title": "Mutex（互斥鎖）",
+    "right_title": "Semaphore（號誌量）",
+    "rows": [
+     {
+      "label": "控制數量",
+      "left": "一次只允許一個 Thread 進入",
+      "right": "可設定同時允許 N 個 Thread 進入"
+     },
+     {
+      "label": "擁有權",
+      "left": "有擁有者，誰上鎖誰解鎖",
+      "right": "通常沒有擁有者，只做計數控制"
+     },
+     {
+      "label": "適用場景",
+      "left": "保護單一共享變數",
+      "right": "連線池、停車場車位、資源數量控管"
+     },
+     {
+      "label": "白話比喻",
+      "left": "廁所門鎖，一次一個人",
+      "right": "停車場剩餘車位燈號，有空位就放行"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_008",
@@ -166,7 +389,50 @@ const TERMS = [
   "related_terms": [
    "term_007",
    "term_006"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "號誌量",
+    "slang": [
+     "號誌",
+     "放令牌",
+     "限流"
+    ],
+    "dialogue": "連線池只有十個位子，用 Semaphore 控制同時最多十個連線。"
+   },
+   "one_liner": "Semaphore 就像停車場的剩餘車位燈號，車位滿了就擋住入口，有一台車離開才再放一台進來。",
+   "versus": {
+    "title": "Mutex 🆚 Semaphore",
+    "left_title": "Mutex（互斥鎖）",
+    "right_title": "Semaphore（號誌量）",
+    "rows": [
+     {
+      "label": "控制數量",
+      "left": "一次只允許一個 Thread 進入",
+      "right": "可設定同時允許 N 個 Thread 進入"
+     },
+     {
+      "label": "擁有權",
+      "left": "有擁有者，誰上鎖誰解鎖",
+      "right": "通常沒有擁有者，只做計數控制"
+     },
+     {
+      "label": "適用場景",
+      "left": "保護單一共享變數",
+      "right": "連線池、停車場車位、資源數量控管"
+     },
+     {
+      "label": "白話比喻",
+      "left": "廁所門鎖，一次一個人",
+      "right": "停車場剩餘車位燈號，有空位就放行"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_009",
@@ -186,7 +452,24 @@ const TERMS = [
   "related_terms": [
    "term_010",
    "term_005"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "虛擬記憶體",
+    "slang": [
+     "吃 swap",
+     "記憶體交換",
+     "VM 不夠"
+    ],
+    "dialogue": "程式記憶體一直漲，最後開始用 Virtual Memory 交換就變超慢。"
+   },
+   "one_liner": "Virtual Memory 就像書桌太小，把不常用的書先放到書櫃，需要時再拿回來，讓你有「桌子很大」的錯覺。",
+   "versus": null
+  }
  },
  {
   "id": "term_010",
@@ -208,7 +491,24 @@ const TERMS = [
   "related_terms": [
    "term_009",
    "term_033"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "快取",
+    "slang": [
+     "快取",
+     "cache 住",
+     "清 cache"
+    ],
+    "dialogue": "這個 API 太慢，先加一層 Cache，重複查詢就不用再打資料庫。"
+   },
+   "one_liner": "Cache 就像把常用的工具放在手邊的工具袋，不用每次跑回倉庫拿，速度快很多。",
+   "versus": null
+  }
  },
  {
   "id": "term_011",
@@ -231,7 +531,25 @@ const TERMS = [
    "term_012",
    "term_032",
    "term_013"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "應用程式介面",
+    "slang": [
+     "串 API",
+     "打 API",
+     "API 掛了"
+    ],
+    "dialogue": "前端直接打這支 API 拿使用者資料，不用自己碰資料庫。"
+   },
+   "one_liner": "API 就像餐廳的點餐窗口，你不用進廚房，只要照規矩點餐，廚房就把結果送出來。",
+   "versus": null
+  }
  },
  {
   "id": "term_012",
@@ -252,7 +570,24 @@ const TERMS = [
   "related_terms": [
    "term_011",
    "term_013"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "表現層狀態轉換",
+    "slang": [
+     "RESTful",
+     "走 REST",
+     "REST API"
+    ],
+    "dialogue": "這支服務照 REST 設計，GET /users 查列表、POST /users 建使用者。"
+   },
+   "one_liner": "REST 就像一套點餐規則：看菜單用 GET、加點用 POST、改餐點用 PUT、取消用 DELETE，大家一看就懂。",
+   "versus": null
+  }
  },
  {
   "id": "term_013",
@@ -274,7 +609,25 @@ const TERMS = [
    "term_012",
    "term_014",
    "term_017"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "超文本傳輸協定",
+    "slang": [
+     "打 HTTP",
+     "HTTP 請求",
+     "status code"
+    ],
+    "dialogue": "這支 API 回 500，先看 HTTP status code 再查後端 log。"
+   },
+   "one_liner": "HTTP 就像寄信格式，信封上寫好網址和方法，伺服器收到後回你一封信和狀態碼。",
+   "versus": null
+  }
  },
  {
   "id": "term_014",
@@ -294,7 +647,25 @@ const TERMS = [
   "related_terms": [
    "term_013",
    "term_015"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "網域名稱系統",
+    "slang": [
+     "DNS 沒解",
+     "查 DNS",
+     "網域設定"
+    ],
+    "dialogue": "網站打不開先查 DNS，搞不好是網域根本沒指到正確 IP。"
+   },
+   "one_liner": "DNS 就像電話簿，你講得出「google.com」這個名字，它幫你查到對應的 IP 電話號碼。",
+   "versus": null
+  }
  },
  {
   "id": "term_015",
@@ -315,7 +686,51 @@ const TERMS = [
   "related_terms": [
    "term_016",
    "term_013"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "傳輸控制協定",
+    "slang": [
+     "走 TCP",
+     "TCP 連線",
+     "三向交握"
+    ],
+    "dialogue": "這個服務要求不能掉資料，所以走 TCP，不要用 UDP。"
+   },
+   "one_liner": "TCP 就像掛號信，寄出後會確認對方收到，沒收到就重寄，保證資料完整到達。",
+   "versus": {
+    "title": "TCP 🆚 UDP",
+    "left_title": "TCP",
+    "right_title": "UDP",
+    "rows": [
+     {
+      "label": "可靠性",
+      "left": "會確認對方收到，遺失會重傳",
+      "right": "不確認對方是否收到，可能掉包"
+     },
+     {
+      "label": "速度",
+      "left": "較慢，但資料完整",
+      "right": "較快，適合即時應用"
+     },
+     {
+      "label": "適用場景",
+      "left": "網頁、檔案傳輸、資料庫連線",
+      "right": "遊戲、直播、語音通話"
+     },
+     {
+      "label": "白話比喻",
+      "left": "掛號信，會確認簽收",
+      "right": "廣播，講出去就不管了"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_016",
@@ -336,7 +751,50 @@ const TERMS = [
   "related_terms": [
    "term_015",
    "term_017"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "使用者資料包協定",
+    "slang": [
+     "走 UDP",
+     "UDP 封包",
+     "掉包"
+    ],
+    "dialogue": "遊戲重視即時性，寧可偶爾掉包也不要等重傳，所以走 UDP。"
+   },
+   "one_liner": "UDP 就像廣播，講出去就不管了，速度快但可能有人沒聽到。",
+   "versus": {
+    "title": "TCP 🆚 UDP",
+    "left_title": "TCP",
+    "right_title": "UDP",
+    "rows": [
+     {
+      "label": "可靠性",
+      "left": "會確認對方收到，遺失會重傳",
+      "right": "不確認對方是否收到，可能掉包"
+     },
+     {
+      "label": "速度",
+      "left": "較慢，但資料完整",
+      "right": "較快，適合即時應用"
+     },
+     {
+      "label": "適用場景",
+      "left": "網頁、檔案傳輸、資料庫連線",
+      "right": "遊戲、直播、語音通話"
+     },
+     {
+      "label": "白話比喻",
+      "left": "掛號信，會確認簽收",
+      "right": "廣播，講出去就不管了"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_017",
@@ -358,7 +816,24 @@ const TERMS = [
   "related_terms": [
    "term_013",
    "term_011"
-  ]
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "網頁即時通訊協定",
+    "slang": [
+     "開 WS",
+     "長連線",
+     "即時推播"
+    ],
+    "dialogue": "聊天室不要一直 polling，直接開 WebSocket 讓伺服器主動推訊息。"
+   },
+   "one_liner": "WebSocket 就像電話熱線，雙方一旦接通就能隨時互相講話，不用每次重新撥號。",
+   "versus": null
+  }
  },
  {
   "id": "term_018",
@@ -380,7 +855,24 @@ const TERMS = [
   "related_terms": [
    "term_033",
    "term_029"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "負載平衡器",
+    "slang": [
+     "掛 LB",
+     "負載平衡",
+     "分流"
+    ],
+    "dialogue": "流量進來先過 Load Balancer，再分給後面三台伺服器。"
+   },
+   "one_liner": "Load Balancer 就像百貨公司的分流人員，把客人平均帶到不同櫃台，避免某一櫃排到爆。",
+   "versus": null
+  }
  },
  {
   "id": "term_019",
@@ -402,7 +894,50 @@ const TERMS = [
   "related_terms": [
    "term_020",
    "term_018"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "延遲",
+    "slang": [
+     "延遲高",
+     "latency 爆",
+     "慢半拍"
+    ],
+    "dialogue": "使用者說很卡，先量一下 API Latency 是網路慢還是資料庫慢。"
+   },
+   "one_liner": "Latency 就像你按下服務鈴到服務生出現的時間，越短代表反應越快。",
+   "versus": {
+    "title": "Latency 🆚 Throughput",
+    "left_title": "Latency（延遲）",
+    "right_title": "Throughput（吞吐量）",
+    "rows": [
+     {
+      "label": "核心定義",
+      "left": "從送出請求到收到回應的時間",
+      "right": "單位時間內系統能處理的請求量"
+     },
+     {
+      "label": "關注重點",
+      "left": "單次反應快不快",
+      "right": "整體能扛多少流量"
+     },
+     {
+      "label": "常見單位",
+      "left": "毫秒（ms）",
+      "right": "RPS / QPS"
+     },
+     {
+      "label": "白話比喻",
+      "left": "服務生多久來一次",
+      "right": "整間餐廳一小時能服務多少客人"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_020",
@@ -423,7 +958,50 @@ const TERMS = [
   "related_terms": [
    "term_019",
    "term_010"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "吞吐量",
+    "slang": [
+     "扛多少 QPS",
+     "吞吐量",
+     "RPS"
+    ],
+    "dialogue": "壓測報告說 Throughput 有 5000 RPS，但 Latency 也不能太差。"
+   },
+   "one_liner": "Throughput 就像高速公路每小時能通過多少輛車，數字越大代表系統越能消化流量。",
+   "versus": {
+    "title": "Latency 🆚 Throughput",
+    "left_title": "Latency（延遲）",
+    "right_title": "Throughput（吞吐量）",
+    "rows": [
+     {
+      "label": "核心定義",
+      "left": "從送出請求到收到回應的時間",
+      "right": "單位時間內系統能處理的請求量"
+     },
+     {
+      "label": "關注重點",
+      "left": "單次反應快不快",
+      "right": "整體能扛多少流量"
+     },
+     {
+      "label": "常見單位",
+      "left": "毫秒（ms）",
+      "right": "RPS / QPS"
+     },
+     {
+      "label": "白話比喻",
+      "left": "服務生多久來一次",
+      "right": "整間餐廳一小時能服務多少客人"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_021",
@@ -442,7 +1020,24 @@ const TERMS = [
   "example_sentence": "寫費氏數列最直覺的就是 Recursion，但考試會考你怎麼優化。",
   "related_terms": [
    "term_022"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "遞迴",
+    "slang": [
+     "遞迴下去",
+     "遞迴爆掉",
+     "recursive"
+    ],
+    "dialogue": "這棵樹用 Recursion 走訪最直覺，但記得寫終止條件。"
+   },
+   "one_liner": "Recursion 就像俄羅斯娃娃，打開一層裡面還有一層，直到最小那個不能再開為止。",
+   "versus": null
+  }
  },
  {
   "id": "term_022",
@@ -463,7 +1058,24 @@ const TERMS = [
   "related_terms": [
    "term_021",
    "term_011"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "多型",
+    "slang": [
+     "多型",
+     "同一個介面",
+     "override"
+    ],
+    "dialogue": "這裡用 Polymorphism，不同付款方式都實作同一個 pay() 介面。"
+   },
+   "one_liner": "Polymorphism 就像同一個「叫聲」指令，狗執行出來是汪汪，貓執行出來是喵喵，介面一樣但行為不同。",
+   "versus": null
+  }
  },
  {
   "id": "term_023",
@@ -484,7 +1096,25 @@ const TERMS = [
   "related_terms": [
    "term_024",
    "term_025"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "物件關聯對映",
+    "slang": [
+     "用 ORM",
+     "ORM 查",
+     "少寫 SQL"
+    ],
+    "dialogue": "這張表用 ORM 操作就好，除非效能有問題再手寫 SQL。"
+   },
+   "one_liner": "ORM 就像翻譯機，你用程式語言的物件講話，它幫你翻成 SQL 跟資料庫溝通。",
+   "versus": null
+  }
  },
  {
   "id": "term_024",
@@ -504,7 +1134,24 @@ const TERMS = [
   "related_terms": [
    "term_025",
    "term_023"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "索引",
+    "slang": [
+     "加索引",
+     "index 沒走",
+     "走索引"
+    ],
+    "dialogue": "這條查詢慢成這樣，先看有沒有走 Index，不要全表掃描。"
+   },
+   "one_liner": "Index 就像書本的目錄，找資料時先翻目錄直接跳到那一頁，不用從第一頁慢慢找。",
+   "versus": null
+  }
  },
  {
   "id": "term_025",
@@ -525,7 +1172,24 @@ const TERMS = [
   "related_terms": [
    "term_026",
    "term_004"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "交易",
+    "slang": [
+     "包交易",
+     "rollback",
+     "commit"
+    ],
+    "dialogue": "扣庫存和建訂單要包在同一個 Transaction，失敗就一起 rollback。"
+   },
+   "one_liner": "Transaction 就像轉帳，扣款和入帳必須一起成功，不能只扣了錢卻沒進對方帳戶。",
+   "versus": null
+  }
  },
  {
   "id": "term_026",
@@ -545,7 +1209,24 @@ const TERMS = [
   "related_terms": [
    "term_025",
    "term_024"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "正規化",
+    "slang": [
+     "正規化",
+     "拆表",
+     "3NF"
+    ],
+    "dialogue": "這張表重複資料太多，先做 Normalization 拆乾淨再上線。"
+   },
+   "one_liner": "Normalization 就像整理衣櫃，把同類衣服放在同一格，避免同樣的東西散落在各處、改了一個地方忘記改另一個。",
+   "versus": null
+  }
  },
  {
   "id": "term_027",
@@ -566,7 +1247,25 @@ const TERMS = [
   "related_terms": [
    "term_030",
    "term_028"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "持續整合與部署",
+    "slang": [
+     "跑 CI",
+     "CI 掛了",
+     "自動部署"
+    ],
+    "dialogue": "PR 送出去會自動跑 CI，測試過了才允許 merge 和部署。"
+   },
+   "one_liner": "CI/CD 就像工廠的自動輸送帶，程式一 push 就自動測試、打包、送到線上，不用人工半夜發版。",
+   "versus": null
+  }
  },
  {
   "id": "term_028",
@@ -587,7 +1286,25 @@ const TERMS = [
   "related_terms": [
    "term_029",
    "term_027"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "容器化",
+    "slang": [
+     "包 Docker",
+     "dockerize",
+     "容器"
+    ],
+    "dialogue": "這個服務先 dockerize，確保大家本機和正式環境跑起來一樣。"
+   },
+   "one_liner": "Docker 就像把程式和它的環境一起裝進一個標準貨櫃，不管搬到哪台機器，打開都能用同樣方式運行。",
+   "versus": null
+  }
  },
  {
   "id": "term_029",
@@ -608,7 +1325,25 @@ const TERMS = [
   "related_terms": [
    "term_028",
    "term_018"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "容器編排系統",
+    "slang": [
+     "K8s",
+     "丟上 K8s",
+     "叢集"
+    ],
+    "dialogue": "服務變多之後就用 Kubernetes 管，掛掉會自動重啟和擴容。"
+   },
+   "one_liner": "Kubernetes 就像貨櫃港口的管理系統，自動安排哪個貨櫃放哪裡、壞掉就補一個、忙不過來就多開幾個。",
+   "versus": null
+  }
  },
  {
   "id": "term_030",
@@ -629,7 +1364,24 @@ const TERMS = [
   "related_terms": [
    "term_027",
    "term_036"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "版本控制",
+    "slang": [
+     "commit",
+     "push 上去",
+     "開分支"
+    ],
+    "dialogue": "改完先 commit，再 push 到遠端開 PR 給同事 review。"
+   },
+   "one_liner": "Git 就像遊戲存檔，每個重要進度都能存一版，玩壞了還能讀檔回到上一個安全點。",
+   "versus": null
+  }
  },
  {
   "id": "term_031",
@@ -651,7 +1403,24 @@ const TERMS = [
   "related_terms": [
    "term_001",
    "term_002"
-  ]
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "聊天機器人",
+    "slang": [
+     "客服 bot",
+     "接 bot",
+     "機器人"
+    ],
+    "dialogue": "官網先接一個 Chatbot 擋常見問題，真的解不了再轉真人客服。"
+   },
+   "one_liner": "Chatbot 就像店門口的接待員，先幫你回答常見問題，複雜的再帶你去櫃台找真人。",
+   "versus": null
+  }
  },
  {
   "id": "term_032",
@@ -670,7 +1439,24 @@ const TERMS = [
   "example_sentence": "要接 LINE 登入，直接載官方 SDK 比自己刻 API 快十倍。",
   "related_terms": [
    "term_011"
-  ]
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "軟體開發套件",
+    "slang": [
+     "載 SDK",
+     "用官方 SDK",
+     "包 SDK"
+    ],
+    "dialogue": "接金流不要自己刻，直接用官方 SDK 比較穩也比較快。"
+   },
+   "one_liner": "SDK 就像買家具附的工具包，螺絲、板手、說明書都幫你準備好，照著做就能組起來。",
+   "versus": null
+  }
  },
  {
   "id": "term_033",
@@ -691,7 +1477,24 @@ const TERMS = [
   "related_terms": [
    "term_010",
    "term_018"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "內容傳遞網路",
+    "slang": [
+     "丟 CDN",
+     "走 CDN",
+     "CDN 快取"
+    ],
+    "dialogue": "圖片和影片都丟 CDN，使用者從最近的節點載入才不會慢。"
+   },
+   "one_liner": "CDN 就像把商品預先放在各地分店，客人不用每次從總倉庫等貨，離家最近的分店直接拿給你。",
+   "versus": null
+  }
  },
  {
   "id": "term_034",
@@ -711,7 +1514,25 @@ const TERMS = [
   "related_terms": [
    "term_035",
    "term_014"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "防火牆",
+    "slang": [
+     "開 port",
+     "擋掉了",
+     "防火牆規則"
+    ],
+    "dialogue": "服務連不上先看 Firewall 有沒有開對應 port。"
+   },
+   "one_liner": "Firewall 就像社區門口的警衛，檢查誰可以進來、誰不能出去，把可疑人物擋在外面。",
+   "versus": null
+  }
  },
  {
   "id": "term_035",
@@ -733,7 +1554,51 @@ const TERMS = [
   "related_terms": [
    "term_023",
    "term_034"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "SQL 注入攻擊",
+    "slang": [
+     "被注入",
+     "脫庫",
+     "拼 SQL"
+    ],
+    "dialogue": "登入查詢不要直接拼字串，不然很容易被 SQL Injection。"
+   },
+   "one_liner": "SQL Injection 就像有人在點餐單上偷寫「順便把倉庫鑰匙交出來」，如果廚房照單全收，資料就被搬走了。",
+   "versus": {
+    "title": "SQL Injection 🆚 參數化查詢",
+    "left_title": "SQL Injection（注入攻擊）",
+    "right_title": "參數化查詢（Prepared Statement）",
+    "rows": [
+     {
+      "label": "風險來源",
+      "left": "把使用者輸入直接拼進 SQL 字串",
+      "right": "把輸入當成參數，不當成 SQL 指令"
+     },
+     {
+      "label": "攻擊後果",
+      "left": "可能被脫庫、刪庫或繞過登入",
+      "right": "即使輸入含惡意字串，也只會被當成普通資料"
+     },
+     {
+      "label": "實務做法",
+      "left": "禁止字串拼接 SQL",
+      "right": "使用 ORM 或 Prepared Statement"
+     },
+     {
+      "label": "白話比喻",
+      "left": "客人偷改點餐單，廚房照單全收",
+      "right": "點餐單和備註分開寫，廚房不會把備註當指令"
+     }
+    ]
+   }
+  }
  },
  {
   "id": "term_036",
@@ -754,7 +1619,24 @@ const TERMS = [
   "related_terms": [
    "term_030",
    "term_027"
-  ]
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "敏捷開發",
+    "slang": [
+     "跑 Agile",
+     "開 Sprint",
+     "迭代"
+    ],
+    "dialogue": "這個專案用 Agile，每兩週一個 Sprint，做完就 Demo 給客戶看。"
+   },
+   "one_liner": "Agile 就像邊開車邊調整方向，先小步做出能用的版本，再根據回饋快速修正，而不是一次憋大招。",
+   "versus": null
+  }
  },
  {
   "id": "term_037",
@@ -776,7 +1658,24 @@ const TERMS = [
   "related_terms": [
    "term_009",
    "term_022"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "垃圾回收",
+    "slang": [
+     "GC",
+     "GC 卡頓",
+     "記憶體回收"
+    ],
+    "dialogue": "服務偶爾會卡一下，可能是 Garbage Collection 在回收大量物件。"
+   },
+   "one_liner": "Garbage Collection 就像辦公室的自動清潔員，會定期把沒人使用的東西清掉，你不用自己丟垃圾。",
+   "versus": null
+  }
  },
  {
   "id": "term_038",
@@ -798,7 +1697,25 @@ const TERMS = [
   "related_terms": [
    "term_011",
    "term_013"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "開放授權",
+    "slang": [
+     "OAuth 登入",
+     "第三方登入",
+     "拿 token"
+    ],
+    "dialogue": "登入頁接 Google OAuth，使用者不用再註冊一組新帳密。"
+   },
+   "one_liner": "OAuth 就像用身分證換一張臨時通行證，你不用把身分證交給對方，也能證明你是誰並取得有限權限。",
+   "versus": null
+  }
  },
  {
   "id": "term_039",
@@ -818,7 +1735,24 @@ const TERMS = [
   "related_terms": [
    "term_021",
    "term_037"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "編譯器",
+    "slang": [
+     "編譯",
+     "compile 不過",
+     "build 失敗"
+    ],
+    "dialogue": "程式 compile 不過先看型別錯誤，不要急著怪環境。"
+   },
+   "one_liner": "Compiler 就像翻譯員，把你寫的高階語言整本翻成機器看得懂的指令，翻完才能執行。",
+   "versus": null
+  }
  },
  {
   "id": "term_040",
@@ -840,6 +1774,783 @@ const TERMS = [
    "term_011",
    "term_018",
    "term_029"
-  ]
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "API 閘道",
+    "slang": [
+     "掛 Gateway",
+     "統一入口",
+     "Gateway 擋"
+    ],
+    "dialogue": "微服務前面放一層 API Gateway，統一處理認證、限流和轉發。"
+   },
+   "one_liner": "API Gateway 就像大樓一樓的櫃台，所有訪客先在這裡登記、驗證，再由櫃台帶你到正確的樓層部門。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_041",
+  "word_en": "Paging",
+  "word_zh": "分頁",
+  "full_name": "Paging",
+  "definition": "作業系統把記憶體切成固定大小的頁框，程式只需載入用到的頁，讓記憶體不足時也能執行大型程式。",
+  "category": [
+   "作業系統"
+  ],
+  "application_scenarios": [
+   "作業系統課程",
+   "虛擬記憶體",
+   "效能調校",
+   "面試常考題"
+  ],
+  "example_sentence": "程式明明比 RAM 大還能跑，就是 Paging 搭配 Virtual Memory 的功勞。",
+  "related_terms": [
+   "term_009",
+   "term_004"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "分頁",
+    "slang": [
+     "切 Page",
+     "換頁",
+     "Page fault"
+    ],
+    "dialogue": "這個服務記憶體一直爆，先看一下是不是 Paging 太頻繁。"
+   },
+   "one_liner": "Paging 就像把一本厚書拆成一頁一頁，書桌放不下時只把正在看的那幾頁拿出來，其餘先放書櫃。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_042",
+  "word_en": "DOM",
+  "word_zh": "文件物件模型",
+  "full_name": "Document Object Model",
+  "definition": "瀏覽器把 HTML 解析成樹狀結構，JavaScript 透過 DOM 讀取或修改網頁內容與樣式。",
+  "category": [
+   "軟體工程",
+   "前端開發"
+  ],
+  "application_scenarios": [
+   "前端開發",
+   "網頁互動",
+   "框架設計",
+   "面試必考"
+  ],
+  "example_sentence": "用 document.querySelector 抓到按鈕，就是在操作 DOM。",
+  "related_terms": [
+   "term_043",
+   "term_044",
+   "term_013"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "文件物件模型",
+    "slang": [
+     "抓 DOM",
+     "DOM 節點",
+     "操作 DOM"
+    ],
+    "dialogue": "這個點擊事件直接操作 DOM 就好，不用整個頁面重繪。"
+   },
+   "one_liner": "DOM 就像網頁的「骨架地圖」，JavaScript 拿著這張地圖找到任何一個元素，幫它換文字、改顏色或加事件。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_043",
+  "word_en": "SSR",
+  "word_zh": "伺服器端渲染",
+  "full_name": "Server-Side Rendering",
+  "definition": "伺服器先把 HTML 組好再回傳給瀏覽器，使用者能更快看到內容，也有助於 SEO。",
+  "category": [
+   "軟體工程",
+   "前端開發"
+  ],
+  "application_scenarios": [
+   "前端開發",
+   "SEO",
+   "網頁效能",
+   "面試必考"
+  ],
+  "example_sentence": "電商商品頁需要 SEO，通常會用 SSR 讓搜尋引擎直接看到完整內容。",
+  "related_terms": [
+   "term_044",
+   "term_013",
+   "term_042"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "伺服器端渲染",
+    "slang": [
+     "伺服器渲染",
+     "SSR 直出",
+     "走 SSR"
+    ],
+    "dialogue": "這頁要 SEO，所以我們走 SSR，不要全部丟給瀏覽器渲染。"
+   },
+   "one_liner": "SSR 就像餐廳先把菜做好端上來，使用者一開頁就能看到完整內容，不用等瀏覽器自己慢慢煮。",
+   "versus": {
+    "title": "SSR 🆚 CSR",
+    "left_title": "SSR（伺服器端渲染）",
+    "right_title": "CSR（客戶端渲染）",
+    "rows": [
+     {
+      "label": "畫面產生位置",
+      "left": "伺服器先組好 HTML 再回傳",
+      "right": "瀏覽器下載 JS 後自己產生畫面"
+     },
+     {
+      "label": "首屏速度",
+      "left": "通常較快，使用者更快看到內容",
+      "right": "首屏較慢，要等 JS 下載與執行"
+     },
+     {
+      "label": "SEO",
+      "left": "較友善，搜尋引擎看得到完整內容",
+      "right": "較弱，需要額外處理"
+     },
+     {
+      "label": "白話比喻",
+      "left": "餐廳先做好菜再端上來",
+      "right": "把食譜和食材送到家，自己動手做"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "term_044",
+  "word_en": "CSR",
+  "word_zh": "客戶端渲染",
+  "full_name": "Client-Side Rendering",
+  "definition": "瀏覽器先下載 JavaScript，再由前端在瀏覽器裡產生畫面，互動流暢但首屏較慢、SEO 較弱。",
+  "category": [
+   "軟體工程",
+   "前端開發"
+  ],
+  "application_scenarios": [
+   "前端開發",
+   "單頁應用",
+   "網頁效能",
+   "面試必考"
+  ],
+  "example_sentence": "後台管理系統不需要 SEO，用 CSR 搭配 SPA 開發起來更快。",
+  "related_terms": [
+   "term_043",
+   "term_042",
+   "term_013"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "客戶端渲染",
+    "slang": [
+     "前端渲染",
+     "瀏覽器渲染",
+     "走 CSR"
+    ],
+    "dialogue": "這是內部後台，用 CSR 就好，不用為了 SEO 搞 SSR。"
+   },
+   "one_liner": "CSR 就像把食譜和食材一起送到你家，瀏覽器要自己動手做，做完才看得到完整畫面。",
+   "versus": {
+    "title": "SSR 🆚 CSR",
+    "left_title": "SSR（伺服器端渲染）",
+    "right_title": "CSR（客戶端渲染）",
+    "rows": [
+     {
+      "label": "畫面產生位置",
+      "left": "伺服器先組好 HTML 再回傳",
+      "right": "瀏覽器下載 JS 後自己產生畫面"
+     },
+     {
+      "label": "首屏速度",
+      "left": "通常較快，使用者更快看到內容",
+      "right": "首屏較慢，要等 JS 下載與執行"
+     },
+     {
+      "label": "SEO",
+      "left": "較友善，搜尋引擎看得到完整內容",
+      "right": "較弱，需要額外處理"
+     },
+     {
+      "label": "白話比喻",
+      "left": "餐廳先做好菜再端上來",
+      "right": "把食譜和食材送到家，自己動手做"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "term_045",
+  "word_en": "Debounce",
+  "word_zh": "防抖",
+  "full_name": "Debounce",
+  "definition": "事件停止後才執行一次，常用在搜尋輸入，避免使用者每打一個字就打一次 API。",
+  "category": [
+   "軟體工程",
+   "前端開發"
+  ],
+  "application_scenarios": [
+   "前端開發",
+   "搜尋輸入",
+   "效能優化",
+   "面試常考題"
+  ],
+  "example_sentence": "搜尋框用 Debounce 300ms，使用者打完字才送出請求。",
+  "related_terms": [
+   "term_046",
+   "term_011",
+   "term_019"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "防抖",
+    "slang": [
+     "防抖",
+     "debounce 一下",
+     "延遲送出"
+    ],
+    "dialogue": "這個搜尋框記得加 debounce，不然每打一個字就打爆後端。"
+   },
+   "one_liner": "Debounce 就像電梯門，有人一直按著開門鍵它就不會關，等到最後一個人停手後才關門出發。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_046",
+  "word_en": "Throttle",
+  "word_zh": "節流",
+  "full_name": "Throttle",
+  "definition": "固定時間內最多執行一次，常用在捲動、滑鼠移動等高頻事件，控制執行頻率。",
+  "category": [
+   "軟體工程",
+   "前端開發"
+  ],
+  "application_scenarios": [
+   "前端開發",
+   "效能優化",
+   "無限捲動",
+   "面試常考題"
+  ],
+  "example_sentence": "監聽 scroll 事件時用 Throttle，每 100ms 最多算一次位置。",
+  "related_terms": [
+   "term_045",
+   "term_019",
+   "term_020"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "節流",
+    "slang": [
+     "節流",
+     "限流一下",
+     "固定頻率"
+    ],
+    "dialogue": "這個 scroll 事件太密集，加個 throttle 讓它固定時間才跑一次。"
+   },
+   "one_liner": "Throttle 就像高速公路的匝道儀控，不管多少車想上來，每隔固定時間只放行一批。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_047",
+  "word_en": "CORS",
+  "word_zh": "跨來源資源共用",
+  "full_name": "Cross-Origin Resource Sharing",
+  "definition": "瀏覽器的跨來源資源共用機制，伺服器要用回應標頭明確允許，前端才能讀取不同網域的 API。",
+  "category": [
+   "計算機網路",
+   "前端開發",
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "前後端串接",
+   "網頁開發",
+   "資安",
+   "面試必考"
+  ],
+  "example_sentence": "前端在 localhost:3000 呼叫 localhost:8000 的 API 被擋，通常是 CORS 沒設定。",
+  "related_terms": [
+   "term_013",
+   "term_011",
+   "term_034"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "跨來源資源共用",
+    "slang": [
+     "跨域",
+     "CORS 擋住",
+     "開 CORS"
+    ],
+    "dialogue": "API 一直報 CORS 錯誤，請後端把我們的前端網域加進 allow-origin。"
+   },
+   "one_liner": "CORS 就像社區警衛，瀏覽器預設不讓別的社區的人進來，除非伺服器明確說「這個網域可以通過」。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_048",
+  "word_en": "ACID",
+  "word_zh": "交易四大特性",
+  "full_name": "Atomicity, Consistency, Isolation, Durability",
+  "definition": "資料庫交易的四大保證：原子性、一致性、隔離性、持久性，確保轉帳等多步驟操作不會只做一半。",
+  "category": [
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "資料庫課程",
+   "銀行轉帳",
+   "系統設計",
+   "面試必考"
+  ],
+  "example_sentence": "轉帳扣款和入帳要包在同一個交易，才能符合 ACID。",
+  "related_terms": [
+   "term_025",
+   "term_024",
+   "term_026"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "交易四大特性",
+    "slang": [
+     "ACID 四兄弟",
+     "交易保證",
+     "符合 ACID"
+    ],
+    "dialogue": "這個扣庫存流程一定要有 ACID，不然超賣會很難查。"
+   },
+   "one_liner": "ACID 就像銀行轉帳的保證：錢要嘛一起扣、一起進，不會出現扣了卻沒入帳的半套交易。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_049",
+  "word_en": "Message Queue",
+  "word_zh": "訊息佇列",
+  "full_name": "Message Queue",
+  "definition": "生產者把任務放進佇列，消費者非同步取出處理，用來削峰、解耦與避免請求塞車。",
+  "category": [
+   "軟體工程",
+   "系統設計"
+  ],
+  "application_scenarios": [
+   "微服務",
+   "非同步處理",
+   "系統設計",
+   "面試常考題"
+  ],
+  "example_sentence": "寄信、轉檔這種慢工作丟進 Message Queue，主流程先回覆使用者。",
+  "related_terms": [
+   "term_018",
+   "term_040",
+   "term_019"
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "訊息佇列",
+    "slang": [
+     "丟 Queue",
+     "排隊處理",
+     "MQ"
+    ],
+    "dialogue": "這個寄信流程不要卡住下單，直接丟 Message Queue 非同步處理。"
+   },
+   "one_liner": "Message Queue 就像餐廳的點單夾，櫃台先把單夾上去就讓客人走，廚房再慢慢照順序出餐。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_050",
+  "word_en": "Vector DB",
+  "word_zh": "向量資料庫",
+  "full_name": "Vector Database",
+  "definition": "專門儲存與搜尋向量資料的資料庫，能依語意相似度找出最相關的文件，是 RAG 的核心元件。",
+  "category": [
+   "人工智慧",
+   "資料庫"
+  ],
+  "application_scenarios": [
+   "AI搜尋引擎",
+   "文件問答",
+   "RAG",
+   "語意搜尋"
+  ],
+  "example_sentence": "把文件 Embedding 存進 Vector DB，使用者提問時就能找回最相關段落。",
+  "related_terms": [
+   "term_001",
+   "term_003",
+   "term_024"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "向量資料庫",
+    "slang": [
+     "向量庫",
+     "Vector DB",
+     "存向量"
+    ],
+    "dialogue": "文件先 embed 後丟進 Vector DB，RAG 才有東西可以檢索。"
+   },
+   "one_liner": "Vector DB 就像一個依照「意思」而不是「關鍵字」排序的圖書館，你問問題，它會找出語意最接近的書。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_051",
+  "word_en": "Fine-tuning",
+  "word_zh": "微調",
+  "full_name": "Fine-tuning",
+  "definition": "用特定領域資料繼續訓練既有模型，讓模型更符合企業語氣與任務，但成本比 RAG 高。",
+  "category": [
+   "人工智慧"
+  ],
+  "application_scenarios": [
+   "AI模型客製",
+   "企業導入",
+   "RAG",
+   "面試常考題"
+  ],
+  "example_sentence": "想讓模型學會公司客服語氣，可以收集對話資料做 Fine-tuning。",
+  "related_terms": [
+   "term_002",
+   "term_001",
+   "term_003"
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "微調",
+    "slang": [
+     "調模型",
+     "fine-tune 一下",
+     "訓模型"
+    ],
+    "dialogue": "這個任務用 RAG 就夠了，先別急著花錢 fine-tune 模型。"
+   },
+   "one_liner": "Fine-tuning 就像讓一個已經會說話的員工去上公司內部訓練，學會你們家的用語和流程。",
+   "versus": {
+    "title": "RAG 🆚 Fine-tuning",
+    "left_title": "RAG（檢索增強生成）",
+    "right_title": "Fine-tuning（微調）",
+    "rows": [
+     {
+      "label": "是否改模型參數",
+      "left": "不改，回答前先查外部資料",
+      "right": "會用領域資料再訓練模型參數"
+     },
+     {
+      "label": "資料更新",
+      "left": "更新知識庫即可，較即時",
+      "right": "重新訓練才能反映新資料"
+     },
+     {
+      "label": "成本",
+      "left": "較低，適合企業知識問答",
+      "right": "較高，需要資料與算力"
+     },
+     {
+      "label": "白話比喻",
+      "left": "給 AI 一本參考書，開卷考試",
+      "right": "送 AI 去上公司內部訓練課程"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "term_052",
+  "word_en": "Big-O",
+  "word_zh": "時間複雜度",
+  "full_name": "Big-O Notation",
+  "definition": "描述演算法執行時間或空間隨資料量成長的趨勢，例如 O(n)、O(log n)，用來比較效率。",
+  "category": [
+   "軟體工程",
+   "演算法"
+  ],
+  "application_scenarios": [
+   "資料結構課程",
+   "演算法面試",
+   "效能分析",
+   "考試"
+  ],
+  "example_sentence": "二分搜尋是 O(log n)，比一筆一筆找的 O(n) 快很多。",
+  "related_terms": [
+   "term_021",
+   "term_053",
+   "term_024"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "時間複雜度",
+    "slang": [
+     "Big O",
+     "複雜度",
+     "O 多少"
+    ],
+    "dialogue": "你這個寫法是 O(n²)，資料一大就會炸，能不能降到 O(n log n)？"
+   },
+   "one_liner": "Big-O 就像在估算「資料變十倍時，工作量會變多快」，讓你知道這個演算法能不能撐到大場面。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_053",
+  "word_en": "Graph",
+  "word_zh": "圖",
+  "full_name": "Graph",
+  "definition": "由節點與邊組成的資料結構，可表示社群關係、地圖、網路拓撲，常見走訪有 BFS 與 DFS。",
+  "category": [
+   "軟體工程",
+   "演算法"
+  ],
+  "application_scenarios": [
+   "資料結構課程",
+   "演算法面試",
+   "社群網路",
+   "路徑規劃"
+  ],
+  "example_sentence": "找朋友的朋友、計算最短路徑，都可以把資料建成 Graph。",
+  "related_terms": [
+   "term_021",
+   "term_052",
+   "term_054"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "圖",
+    "slang": [
+     "建圖",
+     "跑圖",
+     "Graph 走訪"
+    ],
+    "dialogue": "這題先把關係建成 graph，再用 BFS 找最短路徑。"
+   },
+   "one_liner": "Graph 就像一張捷運路線圖，站是節點、軌道是邊，問題變成「怎麼從這站走到那站」。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_054",
+  "word_en": "Set",
+  "word_zh": "集合",
+  "full_name": "Set",
+  "definition": "不重複元素的集合，支援聯集、交集、差集，常用來去重與快速判斷元素是否存在。",
+  "category": [
+   "軟體工程",
+   "演算法"
+  ],
+  "application_scenarios": [
+   "資料結構課程",
+   "離散數學",
+   "演算法面試",
+   "去重"
+  ],
+  "example_sentence": "想知道兩個標籤清單的共同項目，用 Set 取交集最快。",
+  "related_terms": [
+   "term_053",
+   "term_052",
+   "term_024"
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "集合",
+    "slang": [
+     "Set 去重",
+     "丟進 Set",
+     "取交集"
+    ],
+    "dialogue": "這批 ID 先用 Set 去重，不然後面統計會重複算。"
+   },
+   "one_liner": "Set 就像一盒不能放重複貼紙的收藏盒，同一張貼紙不管拿幾次來，盒子裡只會有一張。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_055",
+  "word_en": "Boolean Algebra",
+  "word_zh": "布林代數",
+  "full_name": "Boolean Algebra",
+  "definition": "用 True/False 與 AND、OR、NOT 運算描述邏輯的數學，是數位電路與條件判斷的基礎。",
+  "category": [
+   "軟體工程",
+   "離散數學"
+  ],
+  "application_scenarios": [
+   "離散數學",
+   "數位邏輯",
+   "程式設計",
+   "考試"
+  ],
+  "example_sentence": "if 條件裡的 && 和 || 優先順序，就是 Boolean Algebra 的應用。",
+  "related_terms": [
+   "term_054",
+   "term_053",
+   "term_039"
+  ],
+  "frequency": "nice",
+  "interview_scenarios": [
+   "演算法面試"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "布林代數",
+    "slang": [
+     "布林邏輯",
+     "true/false 判斷",
+     "化簡條件"
+    ],
+    "dialogue": "這個權限判斷先用 boolean algebra 化簡，不然 if 會寫到爆。"
+   },
+   "one_liner": "Boolean Algebra 就像用「是／否」開關組出複雜規則，AND 是兩個開關都要開，OR 是其中一個開就好。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_056",
+  "word_en": "Deploy",
+  "word_zh": "部署",
+  "full_name": "Deploy",
+  "definition": "把開發完成的程式正式放到伺服器或雲端環境，讓使用者可以開始使用新版本。",
+  "category": [
+   "軟體工程",
+   "DevOps"
+  ],
+  "application_scenarios": [
+   "網站部署",
+   "CI/CD",
+   "實習工作",
+   "面試常考題"
+  ],
+  "example_sentence": "今天下午要 Deploy 新版本，早上先把資料庫 migration 跑完。",
+  "related_terms": [
+   "term_027",
+   "term_028",
+   "term_029"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計",
+   "資安防護"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "部署",
+    "slang": [
+     "上版",
+     "推上 Production",
+     "發版"
+    ],
+    "dialogue": "我們今天下午三點要 上版 (Deploy)，先不要 merge 程式碼。"
+   },
+   "one_liner": "Deploy 就像把新版餐點正式放上菜單，客人開始點得到；上線前要先確認廚房真的做得出來，不然就會客訴。",
+   "versus": null
+  }
+ },
+ {
+  "id": "term_057",
+  "word_en": "Pull Request (PR)",
+  "word_zh": "合併請求",
+  "full_name": "Pull Request",
+  "definition": "請團隊把你分支上的修改合併回主要分支，通常會搭配 code review 與自動測試。",
+  "category": [
+   "軟體工程"
+  ],
+  "application_scenarios": [
+   "團隊協作",
+   "版本控制",
+   "開源貢獻",
+   "實習工作"
+  ],
+  "example_sentence": "功能做完先發 PR，等同事 review 通過再 merge 進 main。",
+  "related_terms": [
+   "term_030",
+   "term_027",
+   "term_056"
+  ],
+  "frequency": "must",
+  "interview_scenarios": [
+   "系統設計"
+  ],
+  "communication": {
+   "jargon": {
+    "formal": "合併請求",
+    "slang": [
+     "提 PR",
+     "開 PR",
+     "發 PR",
+     "審 PR"
+    ],
+    "dialogue": "我把登入功能的 code 寫好了，已經 發 PR 了，再幫我 review 一下。"
+   },
+   "one_liner": "Pull Request 就像把修改好的文件交給同事審稿，大家看過沒問題才正式併進公司的最終版本。",
+   "versus": null
+  }
  }
 ];

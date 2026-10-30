@@ -1,0 +1,301 @@
+{
+ "courses": [
+  {
+   "id": "programming",
+   "name": "程式設計",
+   "name_en": "Programming",
+   "level": "basic",
+   "level_label": "大一 / 大二基礎",
+   "core": "必修",
+   "core_stars": 3,
+   "description": "從函式、遞迴到物件導向與編譯流程，打好寫程式、除錯與版本控制的基礎。",
+   "hot_ids": [
+    "term_021",
+    "term_022",
+    "term_039"
+   ],
+   "term_ids": [
+    "term_021",
+    "term_022",
+    "term_039",
+    "term_037",
+    "term_030",
+    "term_011",
+    "term_032",
+    "term_057"
+   ],
+   "must_ids": [
+    "term_021",
+    "term_022",
+    "term_039"
+   ]
+  },
+  {
+   "id": "discrete",
+   "name": "離散數學",
+   "name_en": "Discrete Mathematics",
+   "level": "basic",
+   "level_label": "大一 / 大二基礎",
+   "core": "必修",
+   "core_stars": 2,
+   "description": "集合、圖論、布林邏輯與複雜度分析，是演算法與資訊理論的共同地基。",
+   "hot_ids": [
+    "term_054",
+    "term_053",
+    "term_052"
+   ],
+   "term_ids": [
+    "term_054",
+    "term_053",
+    "term_052",
+    "term_055",
+    "term_021"
+   ],
+   "must_ids": [
+    "term_054",
+    "term_053",
+    "term_055"
+   ]
+  },
+  {
+   "id": "operating-systems",
+   "name": "作業系統",
+   "name_en": "Operating Systems",
+   "level": "advanced",
+   "level_label": "大三 / 大四進階",
+   "core": "必修",
+   "core_stars": 3,
+   "description": "Process、Thread、同步、死結與記憶體管理，期中期末與技術面試都愛考。",
+   "hot_ids": [
+    "term_004",
+    "term_041",
+    "term_007"
+   ],
+   "term_ids": [
+    "term_004",
+    "term_041",
+    "term_007",
+    "term_005",
+    "term_006",
+    "term_008",
+    "term_009",
+    "term_010",
+    "term_037"
+   ],
+   "must_ids": [
+    "term_004",
+    "term_005",
+    "term_006",
+    "term_007",
+    "term_041"
+   ]
+  },
+  {
+   "id": "networks",
+   "name": "計算機網路",
+   "name_en": "Computer Networks",
+   "level": "advanced",
+   "level_label": "大三 / 大四進階",
+   "core": "必修",
+   "core_stars": 3,
+   "description": "從 HTTP、TCP/IP 到 CDN、CORS 與負載平衡，理解資料怎麼在網路上跑。",
+   "hot_ids": [
+    "term_015",
+    "term_014",
+    "term_018"
+   ],
+   "term_ids": [
+    "term_013",
+    "term_014",
+    "term_015",
+    "term_016",
+    "term_017",
+    "term_018",
+    "term_019",
+    "term_020",
+    "term_033",
+    "term_034",
+    "term_047",
+    "term_011",
+    "term_012"
+   ],
+   "must_ids": [
+    "term_013",
+    "term_014",
+    "term_015",
+    "term_016",
+    "term_018"
+   ]
+  },
+  {
+   "id": "database",
+   "name": "資料庫系統",
+   "name_en": "Database Systems",
+   "level": "advanced",
+   "level_label": "大三 / 大四進階",
+   "core": "必修",
+   "core_stars": 3,
+   "description": "關聯式模型、正規化、索引與交易 ACID，後端與資料工程的共同語言。",
+   "hot_ids": [
+    "term_048",
+    "term_024",
+    "term_026"
+   ],
+   "term_ids": [
+    "term_048",
+    "term_024",
+    "term_026",
+    "term_025",
+    "term_023",
+    "term_035",
+    "term_050",
+    "term_010"
+   ],
+   "must_ids": [
+    "term_048",
+    "term_024",
+    "term_025",
+    "term_026"
+   ]
+  },
+  {
+   "id": "algorithms",
+   "name": "演算法",
+   "name_en": "Algorithms",
+   "level": "advanced",
+   "level_label": "大三 / 大四進階",
+   "core": "必修",
+   "core_stars": 3,
+   "description": "複雜度分析、遞迴、圖論與常見解題策略，LeetCode 與研究所考試的核心。",
+   "hot_ids": [
+    "term_052",
+    "term_053",
+    "term_021"
+   ],
+   "term_ids": [
+    "term_052",
+    "term_053",
+    "term_021",
+    "term_054",
+    "term_024"
+   ],
+   "must_ids": [
+    "term_052",
+    "term_053",
+    "term_021"
+   ]
+  }
+ ],
+ "roles": [
+  {
+   "id": "frontend",
+   "name": "前端工程師",
+   "name_en": "Frontend Developer",
+   "icon": "🎨",
+   "description": "把設計稿變成可互動的網頁，處理瀏覽器渲染、效能、跨域與即時互動。",
+   "highlight": [
+    "DOM",
+    "SSR / CSR",
+    "Debounce / Throttle",
+    "CORS"
+   ],
+   "term_ids": [
+    "term_042",
+    "term_043",
+    "term_044",
+    "term_045",
+    "term_046",
+    "term_047",
+    "term_013",
+    "term_011",
+    "term_012",
+    "term_017",
+    "term_010",
+    "term_033",
+    "term_019",
+    "term_038",
+    "term_057"
+   ]
+  },
+  {
+   "id": "backend",
+   "name": "後端工程師",
+   "name_en": "Backend Developer",
+   "icon": "⚙️",
+   "description": "設計 API、資料模型與交易流程，讓服務穩定、可擴充又安全。",
+   "highlight": [
+    "RESTful API",
+    "ORM",
+    "ACID",
+    "Message Queue"
+   ],
+   "term_ids": [
+    "term_012",
+    "term_011",
+    "term_023",
+    "term_048",
+    "term_025",
+    "term_049",
+    "term_024",
+    "term_010",
+    "term_018",
+    "term_040",
+    "term_035",
+    "term_038",
+    "term_028",
+    "term_027",
+    "term_057"
+   ]
+  },
+  {
+   "id": "devops",
+   "name": "DevOps / 雲端架構師",
+   "name_en": "DevOps / Cloud Architect",
+   "icon": "☁️",
+   "description": "打造自動化部署與穩定基礎設施，讓服務能擴充、能監控、也能快速救火。",
+   "highlight": [
+    "CI/CD",
+    "Containerization (Docker)",
+    "Kubernetes",
+    "Load Balancer"
+   ],
+   "term_ids": [
+    "term_027",
+    "term_028",
+    "term_029",
+    "term_018",
+    "term_033",
+    "term_034",
+    "term_014",
+    "term_015",
+    "term_010",
+    "term_040",
+    "term_056"
+   ]
+  },
+  {
+   "id": "ai-data",
+   "name": "AI / 資料工程師",
+   "name_en": "AI / Data Engineer",
+   "icon": "🤖",
+   "description": "建構資料管線與 AI 應用，把模型、向量檢索與產品流程接成可用的服務。",
+   "highlight": [
+    "RAG",
+    "Embedding",
+    "Vector DB",
+    "Fine-tuning"
+   ],
+   "term_ids": [
+    "term_001",
+    "term_003",
+    "term_050",
+    "term_051",
+    "term_002",
+    "term_031",
+    "term_024",
+    "term_010",
+    "term_052"
+   ]
+  }
+ ]
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>資工專業辭典 CS Dictionary | MVP</title>
+<title>資工專業辭典 CS Dictionary | 學習地圖</title>
 <style>
 :root{--bg:#f6f7fb;--card:#fff;--ink:#1a2333;--muted:#667085;--brand:#2563eb;--brand2:#1e40af;--warn:#fef3c7;--line:#e6e9f2;--tag:#eef2ff;--tag2:#f1f5f9}
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
@@ -11,6 +11,10 @@
 header.top{position:sticky;top:0;z-index:20;background:rgba(246,247,251,.95);backdrop-filter:blur(6px);padding:14px 0 10px;border-bottom:1px solid var(--line)}
 h1{margin:0;font-size:22px}h1 small{font-size:13px;color:var(--muted);font-weight:400;margin-left:8px}
 .sub{color:var(--muted);font-size:13px;margin:4px 0 0}
+.brand-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.main-nav{display:flex;gap:4px;background:#e8edf7;padding:4px;border-radius:12px}
+.nav-btn{border:none;background:transparent;padding:8px 13px;border-radius:9px;cursor:pointer;font-size:14px;color:#475569;font-family:inherit}
+.nav-btn.active{background:#fff;color:var(--brand);box-shadow:0 2px 8px rgba(0,0,0,.08);font-weight:600}
 .searchbox{position:relative;margin-top:12px}
 .searchbox input{width:100%;padding:14px 44px 14px 16px;font-size:17px;border:2px solid var(--brand);border-radius:12px;outline:none;background:#fff}
 .searchbox .icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:20px}
@@ -22,14 +26,14 @@ h1{margin:0;font-size:22px}h1 small{font-size:13px;color:var(--muted);font-weigh
 .correct{background:var(--warn);border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;margin-top:12px;font-size:14px;display:none}
 .correct.show{display:block}.correct button{margin:4px 6px 0 0;border:1px solid #d97706;background:#fff;border-radius:20px;padding:4px 12px;cursor:pointer}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
-.pill{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 14px;font-size:14px;cursor:pointer}
+.pill{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 14px;font-size:14px;cursor:pointer;font-family:inherit}
 .pill.active{background:var(--brand);color:#fff;border-color:var(--brand)}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-.tag{background:var(--tag);color:var(--brand2);border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer;border:none}
+.tag{background:var(--tag);color:var(--brand2);border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer;border:none;font-family:inherit}
 .tag:hover{background:#dbeafe}
 .meta{color:var(--muted);font-size:13px;margin:10px 0}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.grid{grid-template-columns:1fr}}
+@media(max-width:640px){.grid,.course-grid,.role-grid,.role-term-grid{grid-template-columns:1fr!important}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.15s}
 .card:hover{box-shadow:0 6px 20px rgba(37,99,235,.15);transform:translateY(-1px)}
 .card h3{margin:0 0 2px;font-size:17px}.card h3 span{color:var(--muted);font-weight:400;font-size:14px}
@@ -38,20 +42,119 @@ h1{margin:0;font-size:22px}h1 small{font-size:13px;color:var(--muted);font-weigh
 .mini i{font-style:normal;font-size:12px;background:var(--tag2);border-radius:6px;padding:2px 8px;color:#475569}
 .mini i.sc{background:#ecfdf5;color:#047857}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
-.modal.show{display:flex}.sheet{background:#fff;border-radius:16px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:22px;position:relative}
+.modal.show{display:flex}.sheet{background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:22px;position:relative}
 .sheet .x{position:absolute;right:12px;top:12px;border:none;background:#f1f5f9;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px}
 .sheet h2{margin:0}.full{color:var(--muted);font-size:13px}.def{background:#f8fafc;border-left:4px solid var(--brand);padding:10px 12px;border-radius:0 8px 8px 0;margin:12px 0;line-height:1.6}
 .ex{background:#fffbeb;border:1px dashed #d97706;border-radius:8px;padding:10px 12px;font-size:14px}
 footer{margin-top:26px;color:var(--muted);font-size:12px;text-align:center}
 .hint{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted);margin-top:12px}
 .hint code{background:#f1f5f9;padding:1px 6px;border-radius:6px;cursor:pointer}
+.hidden{display:none!important}
+
+/* 學習地圖 */
+.learn-hero{background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:1px solid #dbeafe;border-radius:16px;padding:20px;margin-bottom:16px}
+.learn-hero h2{margin:0 0 4px;font-size:23px}.learn-hero p{margin:0;color:#475569;font-size:14px}
+.mode-toggle{display:inline-flex;gap:4px;background:#e2e8f0;padding:4px;border-radius:12px;margin-top:14px}
+.mode-btn{border:none;background:transparent;padding:9px 15px;border-radius:9px;cursor:pointer;font-size:14px;color:#475569;font-family:inherit}
+.mode-btn.active{background:#fff;color:var(--brand);font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:18px 0 10px}
+.section-head h3{margin:0;font-size:19px}.section-head .meta{margin:3px 0 0}
+.course-grid,.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.course-card,.role-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;transition:.18s}
+.course-card:hover,.role-card:hover{box-shadow:0 10px 28px rgba(37,99,235,.14);transform:translateY(-2px);border-color:#bfdbfe}
+.course-top,.role-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.course-icon,.role-icon{font-size:26px}
+.level-badge{background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:600}
+.course-card h3,.role-card h3{margin:0;font-size:18px}.course-card h3 span,.role-card h3 span{font-size:13px;color:var(--muted);font-weight:400}
+.course-card p,.role-card p{font-size:13.5px;color:#475569;line-height:1.55;margin:8px 0}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#475569;margin:8px 0}
+.stars{color:#f59e0b;letter-spacing:1px}
+.preview-tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.preview-tag{background:#f1f5f9;color:#334155;border-radius:7px;padding:3px 8px;font-size:12px}
+.progress-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:8px}
+.progress{height:7px;background:#eef2f7;border-radius:999px;overflow:hidden;margin-top:4px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:999px;transition:width .25s}
+.role-count{font-size:12px;color:var(--muted)}
+.detail-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:4px 0 14px}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:13px;cursor:pointer;font-family:inherit;color:#334155;transition:.15s}
+.btn:hover{background:#f8fafc;border-color:#cbd5e1}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand2);border-color:var(--brand2)}
+.btn-ghost{background:#fff}
+.detail-hero{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.detail-hero h2{margin:8px 0 4px;font-size:22px}.detail-hero p{margin:0;color:#475569;font-size:14px;line-height:1.55;max-width:560px}
+.detail-stats{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#475569;min-width:150px}
+.detail-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 10px}
+.toggle-group{display:inline-flex;background:#e2e8f0;padding:4px;border-radius:11px;gap:3px}
+.toggle-group button{border:none;background:transparent;padding:7px 11px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;color:#475569}
+.toggle-group button.active{background:#fff;color:var(--brand);font-weight:600;box-shadow:0 2px 7px rgba(0,0,0,.08)}
+.term-list{display:flex;flex-direction:column;gap:9px}
+.term-item{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.term-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 15px;cursor:pointer;user-select:none}
+.term-head:hover{background:#f8faff}
+.term-title b{font-size:16px}.term-title span{color:var(--muted);font-size:13px;margin-left:4px}
+.term-side{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);white-space:nowrap}
+.review-dot.done{color:#047857}
+.chev{transition:.2s;display:inline-block}
+.term-item.open .chev{transform:rotate(180deg)}
+.term-quick{display:none;padding:0 15px 15px;border-top:1px dashed #e2e8f0}
+.term-item.open .term-quick{display:block}
+.quick-def{background:#f8fafc;border-radius:10px;padding:11px 12px;font-size:14px;line-height:1.65;margin-top:12px;color:#334155}
+.quick-meta{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+.chip{background:#eef2ff;color:#1e40af;border-radius:7px;padding:3px 8px;font-size:12px}
+.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.freq{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:600;white-space:nowrap}
+.freq.must{background:#fee2e2;color:#b91c1c}.freq.nice{background:#fef3c7;color:#92400e}
+.filter-checks{display:flex;flex-wrap:wrap;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:#334155;margin:12px 0}
+.filter-checks label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.role-term-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 20px}
+.role-term{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px}
+.role-term-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.role-term-head b{font-size:15px}.role-term-head span{color:var(--muted);font-size:12.5px}
+.role-term p{font-size:13px;color:#475569;line-height:1.55;margin:8px 0}
+.tier-title{display:flex;align-items:center;gap:8px;font-size:16px;margin:16px 0 8px}
+.empty-note{background:#fff;border:1px dashed #cbd5e1;border-radius:12px;padding:14px;color:var(--muted);font-size:13px}
+
+/* 溝通與實務專區 */
+.comm-box{margin-top:18px;background:linear-gradient(135deg,#fff7ed,#f0f9ff);border:1px solid #fed7aa;border-radius:14px;padding:15px}
+.comm-title{font-size:16px;font-weight:700;margin-bottom:4px;color:#9a3412}
+.comm-section{padding:11px 0;border-top:1px dashed #fdba74}
+.comm-section:first-of-type{border-top:none}
+.comm-label{font-size:12px;font-weight:700;color:#9a3412;letter-spacing:.02em;margin-bottom:8px}
+.badge-row{display:flex;flex-wrap:wrap;gap:6px}
+.badge{display:inline-flex;align-items:center;gap:3px;background:#fff;border:1px solid #fed7aa;color:#9a3412;border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:600}
+.badge-formal{background:#fff7ed;border-color:#fb923c}
+.dialogue{background:#fff;border-left:3px solid #fb923c;border-radius:0 8px 8px 0;padding:9px 11px;font-size:13.5px;color:#7c2d12;line-height:1.6;margin-top:9px}
+.one-liner{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid #f59e0b;border-radius:0 10px 10px 0;padding:11px 12px;margin:0;font-size:14px;line-height:1.7;color:#334155}
+.one-liner span{flex:1}
+.copy-btn{flex:0 0 auto;border:1px solid #fcd34d;background:#fffbeb;color:#92400e;border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.copy-btn:hover{background:#fef3c7}
+.versus-title{font-size:14px;font-weight:700;color:#7c2d12;margin-bottom:8px}
+.versus-wrap{overflow-x:auto;background:#fff;border-radius:10px;border:1px solid #e2e8f0}
+.versus-table{width:100%;border-collapse:collapse;font-size:13px;min-width:460px}
+.versus-table th,.versus-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:1px solid #eef2f7;line-height:1.55}
+.versus-table th{font-size:12px;background:#f8fafc}
+.versus-table th.left{background:#eff6ff;color:#1d4ed8}
+.versus-table th.right{background:#fff7ed;color:#c2410c}
+.versus-table td.left{background:#f8fbff;color:#1e3a8a}
+.versus-table td.right{background:#fffaf5;color:#7c2d12}
+.versus-table .row-label{font-weight:700;color:#475569;white-space:nowrap}
+.versus-table tr:last-child td{border-bottom:none}
+@media(max-width:640px){.detail-hero{flex-direction:column}.term-head{align-items:flex-start}.term-side{flex-direction:column;align-items:flex-end;gap:4px}}
 </style>
 </head>
 <body>
 <header class="top">
 <div class="wrap" style="padding-bottom:0;padding-top:0">
-<h1>📖 資工專業辭典 <small>CS Dictionary · MVP</small></h1>
+<div class="brand-row">
+<h1>📖 資工專業辭典 <small>CS Dictionary</small></h1>
+<nav class="main-nav">
+<button class="nav-btn active" data-view="dict">📖 辭典搜尋</button>
+<button class="nav-btn" data-view="learn">🗺️ 學習地圖</button>
+</nav>
+</div>
 <p class="sub">給資工大學生 & 職場新人｜上課聽不懂、實務對不上，3 秒查到 + 拼錯也找得到</p>
+<div id="searchArea">
 <div class="searchbox">
 <input id="q" type="text" placeholder="搜英文 / 中文 / 情境，例如：RAG、遞迴、客服機器人…" autocomplete="off">
 <span class="icon">🔍</span>
@@ -59,63 +162,73 @@ footer{margin-top:26px;color:var(--muted);font-size:12px;text-align:center}
 </div>
 <div class="correct" id="correct"></div>
 </div>
+</div>
 </header>
 <div class="wrap">
+<section id="dictView">
 <div class="pills" id="cats"><span class="meta">載入分類中…</span></div>
 <div class="meta">🔥 熱門使用情境（點了直接找技術）：</div>
 <div class="tags" id="scens"></div>
 <div class="hint">💡 試試容錯搜尋：輸入 <code data-q="RAGg">RAGg</code>、<code data-q="Recusion">Recusion</code>、<code data-q="Polymorphsim">Polymorphsim</code> ｜ 試試情境搜尋：<code data-q="客服機器人">客服機器人</code>、<code data-q="面試">面試</code></div>
 <div class="meta" id="count"></div>
 <div class="grid" id="grid"></div>
-<footer>前端（本頁） + 後端 FastAPI（/api/search、/api/suggest）+ 資料 terms.json · 對應 plan.md §5-§7 · 未來可換 PostgreSQL + pg_trgm</footer>
+</section>
+
+<section id="learnView" class="hidden">
+<div class="learn-hero">
+<h2>🗺️ 學習地圖 Learning Paths</h2>
+<p>用「課程」或「職涯角色」當索引，快速抓出必考高頻詞與面試實務說法。</p>
+<div class="mode-toggle">
+<button class="mode-btn active" data-mode="course">🎓 大學課程導向</button>
+<button class="mode-btn" data-mode="role">💼 職涯角色導向</button>
+</div>
+</div>
+<div id="learnBody"><div class="meta">載入學習地圖中…</div></div>
+</section>
+
+<footer>前端（本頁） + 後端 FastAPI（/api/search、/api/learning-paths）+ 資料 terms.json / learning_paths.json · 對應 plan.md §5-§7</footer>
 </div>
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
 <script>
 const $=s=>document.querySelector(s);
-const grid=$('#grid'),dd=$('#dd'),input=$('#q'),correct=$('#correct');
+const $$=s=>[...document.querySelectorAll(s)];
+const grid=$('#grid'),dd=$('#dd'),input=$('#q'),correct=$('#correct'),learnBody=$('#learnBody');
 let activeCat='',timer=null,allCats=[];
+let paths=null,learnMode='course',courseLevel='all';
+let currentCourse=null,currentCourseData=null,currentRole=null,currentRoleData=null,sprintMode=false;
+let roleFilters=new Set();
+const REVIEW_KEY='csdict_reviewed';
+const COURSE_ICONS={programming:'💻',discrete:'🧮','operating-systems':'🖥️',networks:'🌐',database:'🗄️',algorithms:'🧠'};
 
 async function api(p){const r=await fetch(p);return r.json();}
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function hideDD(){dd.classList.remove('show');}
+function reviewed(){try{return new Set(JSON.parse(localStorage.getItem(REVIEW_KEY)||'[]'));}catch(e){return new Set();}}
+function saveReviewed(s){localStorage.setItem(REVIEW_KEY,JSON.stringify([...s]));}
+function isReviewed(id){return reviewed().has(id);}
+function toggleReviewed(id){const s=reviewed();if(s.has(id))s.delete(id);else s.add(id);saveReviewed(s);}
 
+/* ---------- 辭典搜尋 ---------- */
 async function loadMeta(){
   const c=await api('/api/categories');allCats=c.categories||[];
   $('#cats').innerHTML='<button class="pill active" data-c="">全部</button>'+allCats.map(x=>`<button class="pill" data-c="${esc(x)}">${esc(x)}</button>`).join('');
-  document.querySelectorAll('#cats .pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#cats .pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeCat=b.dataset.c;doSearch(input.value.trim());});
+  $$('#cats .pill').forEach(b=>b.onclick=()=>{$$('#cats .pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeCat=b.dataset.c;doSearch(input.value.trim());});
   const s=await api('/api/scenarios');
   $('#scens').innerHTML=(s.scenarios||[]).slice(0,14).map(x=>`<button class="tag" data-s="${esc(x.name)}">${esc(x.name)} ×${x.count}</button>`).join('');
-  document.querySelectorAll('#scens .tag').forEach(b=>b.onclick=()=>{input.value=b.dataset.s;doSearch(b.dataset.s);});
+  $$('#scens .tag').forEach(b=>b.onclick=()=>{input.value=b.dataset.s;doSearch(b.dataset.s);});
 }
 function card(t){
   const cats=(t.category||[]).map(x=>`<i>${esc(x)}</i>`).join('');
   const sc=(t.application_scenarios||[]).slice(0,3).map(x=>`<i class="sc">${esc(x)}</i>`).join('');
   return `<div class="card" data-id="${t.id}"><h3>${esc(t.word_en)} <span>${esc(t.word_zh)}</span></h3><div style="font-size:12px;color:#94a3b8">${esc(t.full_name||'')}</div><p>${esc(t.definition||'')}</p><div class="mini">${cats}${sc}</div></div>`;
 }
-function bindCards(){document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openDetail(c.dataset.id));}
-async function openDetail(id){
-  const t=await api('/api/terms/'+id);if(t.error)return;
-  const rel=(t.related||[]).map(x=>`<button class="tag" data-id="${x.id}">${esc(x.word_en)} ${esc(x.word_zh)}</button>`).join('')||'無';
-  $('#sheet').innerHTML=`<button class="x" onclick="document.querySelector('#modal').classList.remove('show')">✕</button>
-  <h2>${esc(t.word_en)} <span style="font-size:16px;color:#64748b">${esc(t.word_zh)}</span></h2>
-  <div class="full">${esc(t.full_name||'')}</div>
-  <div class="def">${esc(t.definition)}</div>
-  <div class="mini">${(t.category||[]).map(x=>`<i>📂 ${esc(x)}</i>`).join('')}</div>
-  <p style="font-size:14px">🧭 <b>什麼時候會用到？</b></p>
-  <div class="tags">${(t.application_scenarios||[]).map(x=>`<button class="tag" data-q2="${esc(x)}">🔖 ${esc(x)}</button>`).join('')}</div>
-  <p style="font-size:14px">💬 <b>例句</b></p><div class="ex">${esc(t.example_sentence||'—')}</div>
-  <p style="font-size:14px">🔗 <b>相關詞彙</b></p><div class="tags">${rel}</div>`;
-  $('#modal').classList.add('show');
-  document.querySelectorAll('#sheet [data-id]').forEach(b=>b.onclick=e=>{e.stopPropagation();openDetail(b.dataset.id);});
-  document.querySelectorAll('#sheet [data-q2]').forEach(b=>b.onclick=()=>{$('#modal').classList.remove('show');input.value=b.dataset.q2;doSearch(b.dataset.q2);});
-}
-$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.classList.remove('show');});
-
+function bindCards(){$$('.card[data-id]').forEach(c=>c.onclick=()=>openDetail(c.dataset.id));}
 async function doSearch(q){
   q=(q||'').trim();
-  const url='/api/terms?limit=30&q='+encodeURIComponent(q)+(activeCat?'&category='+encodeURIComponent(activeCat):'');
+  const url='/api/terms?limit=60&q='+encodeURIComponent(q)+(activeCat?'&category='+encodeURIComponent(activeCat):'');
   const d=await api(url);
   const res=d.results||[];
-  $('#count').textContent=q?`「${q}」找到 ${res.length} 筆`:`共 ${res.length} 個詞彙（MVP 種子資料 40 筆）`;
+  $('#count').textContent=q?`「${q}」找到 ${res.length} 筆`:`共 ${res.length} 個詞彙（收錄 ${res.length} 筆種子資料）`;
   const onlyFuzzy=q&&res.length>0&&res.every(r=>r.match==='fuzzy');
   const noRes=q&&res.length===0;
   if(onlyFuzzy||noRes){
@@ -136,16 +249,229 @@ async function doSuggest(q){
   if(!items.length){hideDD();return;}
   const hasFuzzy=(d.exact||[]).length===0&&(d.suggestions||[]).length>0;
   dd.innerHTML=(hasFuzzy?'<div class="dd-label">⚠️ 拼字可能有誤，你是不是要找…？</div>':'<div class="dd-label">即時建議（中/英/情境皆可搜）</div>')
-    +items.map(t=>`<div class="dd-item" data-w="${esc(t.word_en)}" data-id="${t.id}"><b>${esc(t.word_en)} <span>${esc(t.word_zh)}</span></b><span>${esc((t.application_scenarios||[])[0]||(t.category||[])[0]||'')}</span></div>`).join('');
+    +items.map(t=>`<div class="dd-item" data-w="${esc(t.word_en)}"><b>${esc(t.word_en)} <span>${esc(t.word_zh)}</span></b><span>${esc((t.application_scenarios||[])[0]||(t.category||[])[0]||'')}</span></div>`).join('');
   dd.classList.add('show');
   dd.querySelectorAll('.dd-item').forEach(el=>el.onmousedown=()=>{input.value=el.dataset.w;hideDD();doSearch(el.dataset.w);});
 }
-function hideDD(){dd.classList.remove('show');}
 input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>{doSuggest(input.value);doSearch(input.value);},300);});
 input.addEventListener('focus',()=>{if(input.value.trim())doSuggest(input.value.trim());});
 document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))hideDD();});
-document.querySelectorAll('.hint code').forEach(c=>c.onclick=()=>{input.value=c.dataset.q;doSearch(c.dataset.q);});
+$$('.hint code').forEach(c=>c.onclick=()=>{input.value=c.dataset.q;doSearch(c.dataset.q);});
+
+/* ---------- 單字詳細頁 / 溝通實務專區 ---------- */
+function freqBadge(t){const must=t.frequency==='must';return `<span class="freq ${must?'must':'nice'}">${must?'🔴 高頻必考':'🟡 進階觀念'}</span>`;}
+function commHTML(t){
+  const c=t.communication||{},j=c.jargon,one=c.one_liner||t.definition||'',v=c.versus;
+  let h='<div class="comm-box"><div class="comm-title">🗣️ 溝通與實務專區</div>';
+  if(j){
+    h+='<div class="comm-section"><div class="comm-label">A. 口頭禪與俗稱 (Industry Jargon)</div><div class="badge-row">'
+      +`<span class="badge badge-formal">🎓 正式：${esc(j.formal||t.word_zh)}</span>`
+      +(j.slang||[]).map(s=>`<span class="badge">🗣️ ${esc(s)}</span>`).join('')
+      +'</div>'+(j.dialogue?`<div class="dialogue">💬 ${esc(j.dialogue)}</div>`:'')+'</div>';
+  }
+  h+='<div class="comm-section"><div class="comm-label">B. 面試 / 上台報告「一句話解釋」(One-Liner)</div>'
+    +`<blockquote class="one-liner"><span>💡 ${esc(one)}</span><button class="copy-btn" data-copy="${esc(one)}">📋 複製</button></blockquote></div>`;
+  if(v){
+    h+='<div class="comm-section"><div class="comm-label">C. 觀念對比 (Versus / Difference)</div>'
+      +`<div class="versus-title">🆚 ${esc(v.title)}</div><div class="versus-wrap"><table class="versus-table"><thead><tr><th></th><th class="left">${esc(v.left_title)}</th><th class="right">${esc(v.right_title)}</th></tr></thead><tbody>`
+      +(v.rows||[]).map(r=>`<tr><td class="row-label">${esc(r.label)}</td><td class="left">${esc(r.left)}</td><td class="right">${esc(r.right)}</td></tr>`).join('')
+      +'</tbody></table></div></div>';
+  }
+  return h+'</div>';
+}
+async function copyText(text,btn){
+  try{await navigator.clipboard.writeText(text);}
+  catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+  const old=btn.textContent;btn.textContent='✅ 已複製';setTimeout(()=>btn.textContent=old,1500);
+}
+async function openDetail(id){
+  const t=await api('/api/terms/'+id);if(t.error)return;
+  const rel=(t.related||[]).map(x=>`<button class="tag" data-id="${x.id}">${esc(x.word_en)} ${esc(x.word_zh)}</button>`).join('')||'無';
+  const done=isReviewed(t.id);
+  $('#sheet').innerHTML=`<button class="x" onclick="document.querySelector('#modal').classList.remove('show')">✕</button>
+  <h2>${esc(t.word_en)} <span style="font-size:16px;color:#64748b">${esc(t.word_zh)}</span></h2>
+  <div class="full">${esc(t.full_name||'')}</div>
+  <div class="def">${esc(t.definition)}</div>
+  <div class="mini">${(t.category||[]).map(x=>`<i>📂 ${esc(x)}</i>`).join('')}${freqBadge(t)}</div>
+  <p style="font-size:14px">🧭 <b>什麼時候會用到？</b></p>
+  <div class="tags">${(t.application_scenarios||[]).map(x=>`<button class="tag" data-q2="${esc(x)}">🔖 ${esc(x)}</button>`).join('')}</div>
+  <p style="font-size:14px">💬 <b>例句</b></p><div class="ex">${esc(t.example_sentence||'—')}</div>
+  ${commHTML(t)}
+  <p style="font-size:14px;margin-top:18px">🔗 <b>相關詞彙</b></p><div class="tags">${rel}</div>
+  <div style="margin-top:14px"><button class="btn ${done?'btn-primary':'btn-ghost'}" id="modalReview">${done?'✅ 已複習':'☐ 標記已複習'}</button></div>`;
+  $('#modal').classList.add('show');
+  $$('#sheet [data-id]').forEach(b=>b.onclick=e=>{e.stopPropagation();openDetail(b.dataset.id);});
+  $$('#sheet [data-q2]').forEach(b=>b.onclick=()=>{$('#modal').classList.remove('show');switchView('dict');input.value=b.dataset.q2;doSearch(b.dataset.q2);});
+  $$('#sheet [data-copy]').forEach(b=>b.onclick=()=>copyText(b.dataset.copy,b));
+  const rb=$('#modalReview');
+  if(rb)rb.onclick=()=>{toggleReviewed(t.id);const d=isReviewed(t.id);rb.textContent=d?'✅ 已複習':'☐ 標記已複習';rb.className='btn '+(d?'btn-primary':'btn-ghost');if(currentCourseData)updateReviewUI(t.id);};
+}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.classList.remove('show');});
+
+/* ---------- 學習地圖 ---------- */
+function switchView(view){
+  $('#dictView').classList.toggle('hidden',view!=='dict');
+  $('#learnView').classList.toggle('hidden',view!=='learn');
+  $('#searchArea').classList.toggle('hidden',view!=='dict');
+  $$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  history.replaceState(null,'',view==='learn'?'#learn':'#');
+  if(view==='learn')loadPaths().then(renderLearnBody);
+}
+$$('.nav-btn').forEach(b=>b.onclick=()=>switchView(b.dataset.view));
+$$('.mode-btn').forEach(b=>b.onclick=()=>{
+  learnMode=b.dataset.mode;currentCourse=null;currentCourseData=null;currentRole=null;currentRoleData=null;sprintMode=false;
+  $$('.mode-btn').forEach(x=>x.classList.toggle('active',x===b));renderLearnBody();
+});
+async function loadPaths(){if(!paths)paths=await api('/api/learning-paths');return paths;}
+function renderLearnBody(){
+  if(!paths){learnBody.innerHTML='<div class="meta">載入學習地圖中…</div>';return;}
+  if(currentCourse&&currentCourseData)return renderCourseDetail();
+  if(currentRole&&currentRoleData)return renderRoleDetail();
+  if(learnMode==='course')return renderCourseEntry();
+  return renderRoleEntry();
+}
+function renderCourseEntry(){
+  const rv=reviewed();
+  const list=paths.courses.filter(c=>courseLevel==='all'||c.level===courseLevel);
+  const pills=[['all','全部'],['basic','大一 / 大二基礎'],['advanced','大三 / 大四進階']];
+  let h=`<div class="section-head"><div><h3>🎓 大學課程導向</h3><p class="meta">用課程當索引，考前直接抓必考高頻詞。</p></div><div class="pills" style="margin:0">`
+    +pills.map(([k,v])=>`<button class="pill ${courseLevel===k?'active':''}" data-level="${k}">${v}</button>`).join('')+'</div></div><div class="course-grid">';
+  h+=list.map(c=>{
+    const ids=c.term_ids||[],done=ids.filter(i=>rv.has(i)).length,pct=ids.length?Math.round(done/ids.length*100):0;
+    return `<div class="course-card" data-course="${c.id}">
+      <div class="course-top"><span class="course-icon">${COURSE_ICONS[c.id]||'📘'}</span><span class="level-badge">${esc(c.level_label)}</span></div>
+      <h3>${esc(c.name)} <span>${esc(c.name_en)}</span></h3>
+      <p>${esc(c.description)}</p>
+      <div class="stat-row"><span>📚 收錄 ${c.term_count} 個關鍵術語</span><span>${esc(c.core)} <span class="stars">${'★'.repeat(c.core_stars)}${'☆'.repeat(3-c.core_stars)}</span></span></div>
+      <div class="preview-tags">${(c.hot_words||[]).slice(0,3).map(w=>`<span class="preview-tag">${esc(w)}</span>`).join('')}</div>
+      <div class="progress-row"><span>已複習 ${done}/${ids.length}</span><span>${pct}%</span></div>
+      <div class="progress"><i style="width:${pct}%"></i></div>
+    </div>`;
+  }).join('');
+  learnBody.innerHTML=h+'</div>';
+  $$('#learnBody [data-level]').forEach(b=>b.onclick=()=>{courseLevel=b.dataset.level;renderCourseEntry();});
+  $$('#learnBody [data-course]').forEach(c=>c.onclick=()=>openCourse(c.dataset.course));
+}
+function renderRoleEntry(){
+  let h='<div class="section-head"><div><h3>💼 職涯角色導向</h3><p class="meta">用職位當索引，面試前先看高頻必考。</p></div></div><div class="role-grid">';
+  h+=paths.roles.map(r=>`<div class="role-card" data-role="${r.id}">
+    <div class="role-top"><span class="role-icon">${esc(r.icon)}</span><span class="role-count">${r.term_count} 個術語 · ${r.must_count} 個必考</span></div>
+    <h3>${esc(r.name)}</h3><div class="full">${esc(r.name_en)}</div>
+    <p>${esc(r.description)}</p>
+    <div class="preview-tags">${(r.highlight||[]).map(x=>`<span class="preview-tag">${esc(x)}</span>`).join('')}</div>
+  </div>`).join('');
+  learnBody.innerHTML=h+'</div>';
+  $$('#learnBody [data-role]').forEach(c=>c.onclick=()=>openRole(c.dataset.role));
+}
+async function openCourse(id){
+  currentCourse=id;currentRole=null;currentRoleData=null;sprintMode=false;
+  currentCourseData=await api('/api/courses/'+id);
+  if(currentCourseData.error){learnBody.innerHTML='<div class="empty-note">找不到這門課程。</div>';return;}
+  renderCourseDetail();
+}
+function termAccordion(t){
+  const done=isReviewed(t.id);
+  return `<div class="term-item" data-term="${t.id}">
+    <div class="term-head" data-toggle="${t.id}">
+      <div class="term-title"><b>${esc(t.word_en)}</b> <span>${esc(t.word_zh)}</span> ${freqBadge(t)}</div>
+      <div class="term-side"><span class="review-dot ${done?'done':''}">${done?'✅ 已複習':'☐ 未複習'}</span><span class="chev">▾</span></div>
+    </div>
+    <div class="term-quick">
+      <div class="quick-def">${esc(t.definition)}</div>
+      <div class="quick-meta">${(t.interview_scenarios||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join('')}</div>
+      <div class="quick-actions"><button class="btn btn-primary" data-detail="${t.id}">查看詳細頁面 →</button><button class="btn btn-ghost" data-review="${t.id}">${done?'✅ 已複習':'☐ 標記已複習'}</button></div>
+    </div>
+  </div>`;
+}
+function renderCourseDetail(){
+  const c=currentCourseData,mustSet=new Set(c.must_ids||[]);
+  const terms=sprintMode?c.terms.filter(t=>mustSet.has(t.id)):c.terms;
+  const rv=reviewed(),done=(c.term_ids||[]).filter(i=>rv.has(i)).length;
+  learnBody.innerHTML=`<div class="detail-head"><button class="btn btn-ghost" id="backCourses">← 回課程列表</button><div class="detail-actions"><button class="btn btn-ghost" id="exportAnki">⬇️ 匯出 Anki CSV</button><button class="btn btn-ghost" id="exportPdf">🖨️ 匯出 PDF 快查表</button></div></div>
+  <div class="detail-hero"><div><span class="level-badge">${esc(c.level_label)}</span><h2>${COURSE_ICONS[c.id]||'📘'} ${esc(c.name)} <span style="font-size:15px;color:#64748b">${esc(c.name_en)}</span></h2><p>${esc(c.description)}</p></div><div class="detail-stats"><span>📚 ${c.term_count} 個關鍵術語</span><span>${esc(c.core)} <span class="stars">${'★'.repeat(c.core_stars)}${'☆'.repeat(3-c.core_stars)}</span></span><span id="courseProgress">✅ 已複習 ${done}/${(c.term_ids||[]).length}</span></div></div>
+  <div class="detail-toolbar"><div class="toggle-group"><button class="${sprintMode?'':'active'}" id="modeFull">📚 完整清單 (${c.term_count})</button><button class="${sprintMode?'active':''}" id="modeSprint">⚡ 考前衝刺 (${(c.must_ids||[]).length})</button></div><span class="meta" style="margin:0">點單字展開 Quick View</span></div>
+  <div class="term-list">${terms.map(termAccordion).join('')}</div>`;
+  $('#backCourses').onclick=()=>{currentCourse=null;currentCourseData=null;sprintMode=false;renderLearnBody();};
+  $('#modeFull').onclick=()=>{sprintMode=false;renderCourseDetail();};
+  $('#modeSprint').onclick=()=>{sprintMode=true;renderCourseDetail();};
+  $('#exportAnki').onclick=exportAnki;
+  $('#exportPdf').onclick=exportPdf;
+  $$('#learnBody [data-toggle]').forEach(h=>h.onclick=()=>h.parentElement.classList.toggle('open'));
+  $$('#learnBody [data-detail]').forEach(b=>b.onclick=e=>{e.stopPropagation();openDetail(b.dataset.detail);});
+  $$('#learnBody [data-review]').forEach(b=>b.onclick=e=>{
+    e.stopPropagation();toggleReviewed(b.dataset.review);updateReviewUI(b.dataset.review);
+  });
+}
+function updateReviewUI(id){
+  const done=isReviewed(id);
+  $$(`#learnBody [data-review="${id}"]`).forEach(b=>b.textContent=done?'✅ 已複習':'☐ 標記已複習');
+  const item=document.querySelector(`#learnBody .term-item[data-term="${id}"]`);
+  if(item){const dot=item.querySelector('.review-dot');if(dot){dot.textContent=done?'✅ 已複習':'☐ 未複習';dot.classList.toggle('done',done);}}
+  if(currentCourseData){const rv=reviewed();const d=(currentCourseData.term_ids||[]).filter(i=>rv.has(i)).length;const el=$('#courseProgress');if(el)el.textContent=`✅ 已複習 ${d}/${(currentCourseData.term_ids||[]).length}`;}
+}
+async function openRole(id){
+  currentRole=id;currentCourse=null;currentCourseData=null;roleFilters=new Set();
+  currentRoleData=await api('/api/roles/'+id);
+  if(currentRoleData.error){learnBody.innerHTML='<div class="empty-note">找不到這個職涯角色。</div>';return;}
+  renderRoleDetail();
+}
+function roleTermCard(t){
+  return `<div class="role-term"><div class="role-term-head"><div><b>${esc(t.word_en)}</b> <span>${esc(t.word_zh)}</span></div>${freqBadge(t)}</div><p>${esc(t.definition)}</p><div class="mini">${(t.interview_scenarios||[]).map(s=>`<i class="sc">${esc(s)}</i>`).join('')}</div><button class="btn btn-ghost" style="margin-top:9px" data-detail="${t.id}">查看詳細 →</button></div>`;
+}
+function renderRoleDetail(){
+  const r=currentRoleData;
+  let terms=r.terms||[];
+  if(roleFilters.size)terms=terms.filter(t=>(t.interview_scenarios||[]).some(s=>roleFilters.has(s)));
+  const must=terms.filter(t=>t.frequency==='must'),nice=terms.filter(t=>t.frequency!=='must');
+  const filters=[['系統設計','系統設計 (System Design)'],['演算法面試','演算法面試 (LeetCode/DSA)'],['資安防護','資安防護 (Security)']];
+  learnBody.innerHTML=`<div class="detail-head"><button class="btn btn-ghost" id="backRoles">← 回角色列表</button></div>
+  <div class="detail-hero"><div><span class="level-badge">${esc(r.icon)} 職涯角色</span><h2>${esc(r.name)} <span style="font-size:15px;color:#64748b">${esc(r.name_en)}</span></h2><p>${esc(r.description)}</p><div class="preview-tags">${(r.highlight||[]).map(x=>`<span class="preview-tag">${esc(x)}</span>`).join('')}</div></div><div class="detail-stats"><span>📚 ${r.term_count} 個關鍵術語</span><span>🔴 ${(r.terms||[]).filter(t=>t.frequency==='must').length} 個高頻必考</span></div></div>
+  <div class="filter-checks"><b style="font-size:13px">場景模擬問答：</b>${filters.map(([k,v])=>`<label><input type="checkbox" data-scenario="${esc(k)}" ${roleFilters.has(k)?'checked':''}> ${v}</label>`).join('')}<span class="meta" style="margin:0">（勾選後動態過濾對應詞彙）</span></div>
+  <div class="tier-title">🔴 高頻必考 <span style="font-size:12px;color:#64748b;font-weight:400">Must Know · 面試前 10 分鐘必看</span></div>
+  ${must.length?`<div class="role-term-grid">${must.map(roleTermCard).join('')}</div>`:'<div class="empty-note">目前篩選條件下沒有高頻必考詞彙。</div>'}
+  <div class="tier-title">🟡 進階觀念 <span style="font-size:12px;color:#64748b;font-weight:400">Nice to Have · 展現資深度的加分項</span></div>
+  ${nice.length?`<div class="role-term-grid">${nice.map(roleTermCard).join('')}</div>`:'<div class="empty-note">目前篩選條件下沒有進階詞彙。</div>'}`;
+  $('#backRoles').onclick=()=>{currentRole=null;currentRoleData=null;roleFilters=new Set();renderLearnBody();};
+  $$('#learnBody [data-detail]').forEach(b=>b.onclick=e=>{e.stopPropagation();openDetail(b.dataset.detail);});
+  $$('#learnBody [data-scenario]').forEach(cb=>cb.onchange=()=>{if(cb.checked)roleFilters.add(cb.dataset.scenario);else roleFilters.delete(cb.dataset.scenario);renderRoleDetail();});
+}
+
+/* ---------- 匯出 ---------- */
+function currentExportTerms(){
+  if(!currentCourseData)return[];
+  const mustSet=new Set(currentCourseData.must_ids||[]);
+  return sprintMode?currentCourseData.terms.filter(t=>mustSet.has(t.id)):currentCourseData.terms;
+}
+function downloadBlob(content,filename,type){
+  const blob=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1200);
+}
+function exportAnki(){
+  const terms=currentExportTerms(),name=currentCourseData.name;
+  const rows=[['Front','Back','Tags']];
+  terms.forEach(t=>rows.push([t.word_en,`${t.word_zh}｜${t.definition}`,`CS::${name}`]));
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  downloadBlob('\ufeff'+csv,`${name}_Anki.csv`,'text/csv;charset=utf-8');
+}
+function exportPdf(){
+  const terms=currentExportTerms(),c=currentCourseData;
+  const w=window.open('','_blank');
+  if(!w){alert('請允許彈出視窗，才能匯出 PDF 快查表。');return;}
+  const items=terms.map(t=>`<div class="item"><h2>${esc(t.word_en)} <small>${esc(t.word_zh)}</small></h2><p>${esc(t.definition)}</p>${t.communication&&t.communication.one_liner?`<blockquote>💡 ${esc(t.communication.one_liner)}</blockquote>`:''}</div>`).join('');
+  w.document.write(`<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><title>${esc(c.name)} 考前快查表</title><style>
+  body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#1a2333;margin:32px;line-height:1.6}
+  h1{font-size:24px;margin:0 0 4px}.sub{color:#667085;font-size:13px;margin-bottom:22px}
+  .item{border-bottom:1px solid #e6e9f2;padding:12px 0;page-break-inside:avoid}
+  h2{font-size:16px;margin:0 0 4px}h2 small{color:#667085;font-weight:400;font-size:13px}
+  p{margin:4px 0;font-size:13px}blockquote{margin:6px 0 0;background:#fffbeb;border-left:3px solid #f59e0b;padding:7px 10px;font-size:12.5px;color:#475569}
+  @media print{body{margin:14mm}}
+  </style></head><body><h1>${esc(c.name)} · 考前快查表</h1><div class="sub">${esc(c.name_en)}｜${esc(c.level_label)}｜共 ${terms.length} 個術語｜${new Date().toLocaleDateString('zh-TW')}</div>${items}<script>window.onload=function(){window.print();};<\/script></body></html>`);
+  w.document.close();
+}
+
+/* ---------- 初始化 ---------- */
 loadMeta().then(()=>doSearch(''));
+if(location.hash==='#learn')switchView('learn');
 </script>
 </body>
 </html>
