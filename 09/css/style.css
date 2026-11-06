@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   font-family: "Noto Sans TC", "Segoe UI", system-ui, sans-serif;
   background: var(--bg);

@@ -53,10 +53,10 @@ function fillModal(meal) {
     )
     .join("");
   modalInstructions.textContent = meal.strInstructions || "這道菜沒有留下步驟說明。";
-  if (meal.strYoutube) {
-    modalYoutube.href = meal.strYoutube;
-    modalYoutube.hidden = false;
-  }
+  modalYoutube.href =
+    meal.strYoutube ||
+    `https://www.youtube.com/results?search_query=${encodeURIComponent(meal.strMeal + " recipe")}`;
+  modalYoutube.hidden = false;
 }
 
 function openModal() {
