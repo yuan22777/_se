@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今天吃什麼？ | 食譜靈感抽籤機</title>
+  <link rel="preconnect" href="https://www.themealdb.com" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/wheel.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">🍜 今天吃什麼？</h1>
+    <p class="site-subtitle">轉個輪盤、翻翻冰箱食材，讓靈感幫你決定這一餐！</p>
+    <nav class="tabs" id="tabs">
+      <button class="tab is-active" data-tab="wheel">🎡 轉盤抽籤</button>
+      <button class="tab" data-tab="search">🔍 食材搜尋</button>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <section class="page page-wheel is-active" id="page-wheel">
+      <div class="wheel-stage">
+        <div class="wheel-pointer" aria-hidden="true">▼</div>
+        <div class="wheel" id="wheel" aria-hidden="true"></div>
+        <button class="wheel-go" id="wheel-go" type="button">GO</button>
+      </div>
+      <p class="wheel-hint" id="wheel-hint">按下 GO，轉出今晚的菜色！</p>
+    </section>
+
+    <section class="page page-search" id="page-search">
+      <form class="search-bar" id="search-form" autocomplete="off">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="輸入食材（例如：Chicken, Tomato...）"
+          aria-label="搜尋食材"
+        />
+        <button type="submit" id="search-btn">搜尋</button>
+      </form>
+
+      <div class="quick-tags" id="quick-tags">
+        <span class="quick-tags-label">熱門食材：</span>
+      </div>
+
+      <div class="search-status" id="search-status" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <p>食譜載入中…</p>
+      </div>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <span class="empty-emoji">🍽️</span>
+        <p>找不到含有該食材的食譜，換個字試試吧！</p>
+      </div>
+
+      <div class="card-grid" id="card-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    資料來源：<a href="https://www.themealdb.com/" target="_blank" rel="noopener">TheMealDB</a> · 學習用途
+  </footer>
+
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" type="button" aria-label="關閉">&times;</button>
+      <div class="modal-banner">
+        <img id="modal-img" src="" alt="" />
+        <h2 id="modal-title">載入中…</h2>
+      </div>
+      <div class="badges" id="modal-badges"></div>
+      <div class="modal-columns">
+        <div class="modal-col">
+          <h3>🧺 食材與份量</h3>
+          <ul class="ingredient-list" id="modal-ingredients"></ul>
+        </div>
+        <div class="modal-col">
+          <h3>👨‍🍳 做法步驟</h3>
+          <p class="instructions" id="modal-instructions"></p>
+          <a class="youtube-btn" id="modal-youtube" href="#" target="_blank" rel="noopener" hidden>▶ YouTube 觀看教學</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/wheel.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
