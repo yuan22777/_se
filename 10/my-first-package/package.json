@@ -1,0 +1,9 @@
+{
+  "name": "yuan22777",
+  "version": "1.0.0",
+  "description": "這是我為作業寫的第一個 npm 套件",
+  "main": "index.js",
+  "keywords": ["demo", "homework"],
+  "author": "你的名字",
+  "license": "MIT"
+}

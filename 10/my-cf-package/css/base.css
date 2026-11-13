@@ -1,0 +1,110 @@
+:root {
+  --bg: #fdf6ec;
+  --card: #ffffff;
+  --text: #3b2f2a;
+  --muted: #8a7d75;
+  --accent: #ff6b3d;
+  --accent-dark: #e65526;
+  --shadow: 0 8px 24px rgba(93, 60, 30, 0.12);
+  --radius: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: "Noto Sans TC", "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  text-align: center;
+  padding: 28px 16px 0;
+}
+
+.site-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.site-subtitle {
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  background: #f3e6d8;
+  padding: 6px;
+  border-radius: 999px;
+  margin: 18px auto 0;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 0.25s, color 0.25s;
+}
+
+.tab.is-active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.site-main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.page {
+  display: none;
+}
+
+.page.is-active {
+  display: block;
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.wheel-hint {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 16px;
+}
+
+.site-footer a {
+  color: var(--accent);
+}

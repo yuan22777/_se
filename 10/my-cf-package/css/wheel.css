@@ -1,0 +1,85 @@
+.wheel-stage {
+  position: relative;
+  width: min(420px, 88vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 2.2rem;
+  color: var(--accent-dark);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+}
+
+.wheel {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ffb3a7 0deg 45deg,
+    #ffd591 45deg 90deg,
+    #b5e48c 90deg 135deg,
+    #9adcff 135deg 180deg,
+    #cdb4f6 180deg 225deg,
+    #ffc2d1 225deg 270deg,
+    #fdffb6 270deg 315deg,
+    #a0e7e5 315deg 360deg
+  );
+  box-shadow: 0 0 0 10px #fff, 0 12px 30px rgba(93, 60, 30, 0.25);
+  transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.wheel-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  font-weight: 700;
+  font-size: clamp(0.72rem, 2vw, 0.95rem);
+  color: #5d3c1e;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.wheel-go {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 31%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  background: var(--accent);
+  color: #fff;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(230, 85, 38, 0.45);
+  transition: transform 0.15s, background 0.2s;
+}
+
+.wheel-go:hover:not(:disabled) {
+  background: var(--accent-dark);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.wheel-go:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+.wheel-go:disabled {
+  background: #c9b8ab;
+  cursor: not-allowed;
+  box-shadow: none;
+}

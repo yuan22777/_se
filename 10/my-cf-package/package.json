@@ -1,0 +1,10 @@
+{
+  "name": "yuan22777",
+  "version": "1.0.0",
+  "description": "今天吃什麼？食譜靈感抽籤機 — 模組化 npm 套件",
+  "main": "index.js",
+  "type": "module",
+  "keywords": ["cloudflare", "pages", "mealdb", "homework"],
+  "author": "yuan22777",
+  "license": "MIT"
+}
