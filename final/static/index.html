@@ -365,7 +365,7 @@ function card(t){
 function bindCards(){$$('.card[data-id]').forEach(c=>c.onclick=()=>openDetail(c.dataset.id));}
 async function doSearch(q){
   q=(q||'').trim();
-  const url='/api/terms?limit=60&q='+encodeURIComponent(q)+(activeCat?'&category='+encodeURIComponent(activeCat):'');
+  const url='/api/terms?limit=200&q='+encodeURIComponent(q)+(activeCat?'&category='+encodeURIComponent(activeCat):'');
   const d=await api(url);
   const res=d.results||[];
   $('#count').textContent=q?`「${q}」找到 ${res.length} 筆`:`共 ${res.length} 個詞彙（收錄 ${res.length} 筆種子資料）`;

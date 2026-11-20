@@ -6,7 +6,7 @@
 若要部署到任何靜態空間（GitHub Pages、Netlify、nginx 等），把 `static/` 整個資料夾上傳即可。
 
 ## 功能
-1. ✅ 中英詞彙庫：`terms.js` 共 57 筆（RAG、Deadlock、Polymorphism、CI/CD、CORS、ACID、DOM、Vector DB、Deploy、Pull Request…）
+1. ✅ 中英詞彙庫：`terms.js` 共 112 筆（原有 57 筆 + 參考「計算機科學專有名詞中英文對照表」新增 55 筆：Algorithm、Array、Abstraction、CAP Theorem、CRUD、Data Structure、Idempotency、JSON、OSI Model、Paxos、Raft、Stack、Unicode、Zero-day Attack…）
 2. ✅ 搜尋欄：debounce 300ms + 即時下拉建議，中/英/全名/定義/情境全文可搜
 3. ✅ 分類 + 情境：分類 pills 與熱門情境 tags，點標籤直接篩選
 4. ✅ 拼字容錯：前端 Levenshtein + SequenceMatcher，打 `RAGg`、`Recusion`、`Polymorphsim` 會顯示「你是不是要找…？」
@@ -14,12 +14,14 @@
 6. ✅ 溝通與實務專區：業界口頭禪 Badge、實務對話、面試一句話解釋（一鍵複製）與觀念對比表
 7. ✅ 匯出：課程詳情頁可匯出 Anki CSV 與 PDF 考前快查表
 
+新增詞彙的名稱與中文對照參考自 [計算機科學專有名詞 - 中英文對照表](https://rickhw.github.io/2017/07/01/Reference/SC-Terms/)，定義、例句與溝通實務欄位為本專案自行撰寫。
+
 ## 檔案結構
 ```
 final/
   static/
     index.html          主頁面（所有搜尋、學習地圖、詳細頁邏輯都在本檔）
-    terms.js            57 筆詞彙資料
+    terms.js            112 筆詞彙資料
     learning_paths.js   6 門課程 + 4 個職涯角色定義
     preview.html        簡易版（僅辭典搜尋，雙擊即開）
   terms.json             詞彙原始資料（供重新產生 terms.js）
